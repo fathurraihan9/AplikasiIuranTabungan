@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SantriController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.admin.dashboard');
 });
 
 /*
