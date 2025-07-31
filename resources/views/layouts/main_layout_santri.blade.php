@@ -28,7 +28,7 @@
     <div class="app-wrapper">
         <x-navbar></x-navbar>
 
-        <x-sidebar-admin></x-sidebar-admin>
+        <x-sidebar-santri></x-sidebar-santri>
         <!--begin::App Main-->
         <main class="app-main">
             <!--begin::App Content Header-->

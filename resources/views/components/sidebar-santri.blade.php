@@ -23,16 +23,9 @@ class="brand-image opacity-75 shadow" /> --}}
                 aria-label="Main navigation" data-accordion="false" id="navigation">
                 {{-- dashboard --}}
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                    <a href="{{ route('santri.dashboard') }}" class="nav-link">
                         <i class="nav-icon bi bi-palette"></i>
                         <p>Dashboard</p>
-                    </a>
-                </li>
-                {{-- santri --}}
-                <li class="nav-item">
-                    <a href="{{route('admin.santri')}}" class="nav-link">
-                        <i class="nav-icon bi bi-people"></i>
-                        <p>Santri</p>
                     </a>
                 </li>
                 {{-- iuran --}}
@@ -45,18 +38,11 @@ class="brand-image opacity-75 shadow" /> --}}
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        {{-- pembayaran iuran --}}
-                        <li class="nav-item">
-                            <a href="{{ route('admin.pembayaran_iuran') }}" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Pembayaran Iuran</p>
-                            </a>
-                        </li>
                         {{-- riwayat pembayaran --}}
                         <li class="nav-item">
-                            <a href="{{ route('admin.riwayat_pembayaran_iuran') }}" class="nav-link">
+                            <a href="{{ route('santri.riwayat_pembayaran_iuran') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Riwayat Pembayaran</p>
+                                <p>Riwayat Pembayaran Iuran</p>
                             </a>
                         </li>
                     </ul>
@@ -73,40 +59,19 @@ class="brand-image opacity-75 shadow" /> --}}
                     <ul class="nav nav-treeview">
                         {{-- setoran --}}
                         <li class="nav-item">
-                            <a href="../index.html" class="nav-link">
+                            <a href="{{ route('santri.pengecekan_saldo_tabungan') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Setoran</p>
+                                <p>Pengecekan Saldo</p>
                             </a>
                         </li>
                         {{-- tarik tabungan --}}
                         <li class="nav-item">
-                            <a href="../index2.html" class="nav-link">
+                            <a href="{{ route('santri.riwayat_transaksi_tabungan') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Tarik Tabungan</p>
-                            </a>
-                        </li>
-                        {{-- pengelolaan saldo --}}
-                        <li class="nav-item">
-                            <a href="../index2.html" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Pengelolaan Saldo</p>
-                            </a>
-                        </li>
-                        {{-- riwayat transaksi tabungan --}}
-                        <li class="nav-item">
-                            <a href="../index2.html" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Riwayat Transaksi Tabungan</p>
+                                <p>Riwayat Transaksi</p>
                             </a>
                         </li>
                     </ul>
-                </li>
-                {{-- laporan --}}
-                <li class="nav-item">
-                    <a href="../generate/theme.html" class="nav-link">
-                        <i class="nav-icon bi bi-journal-check"></i>
-                        <p>Laporan</p>
-                    </a>
                 </li>
             </ul>
             <!--end::Sidebar Menu-->

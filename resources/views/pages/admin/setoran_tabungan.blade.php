@@ -2,7 +2,7 @@
 
 @section('app-content-header')
     <div class="container-fluid">
-        <h2>Penarikan Tabungan</h2>
+        <h2>Input / Setoran Tabungan</h2>
     </div>
 @endsection
 
@@ -14,10 +14,17 @@
                 <div class="card card-primary card-outline">
                     <form action="">
                         <div class="card-header">
-                            <div class="card-title">Penarikan Tabungan</div>
+                            <div class="card-title">Input / Setoran Tabungan</div>
                         </div>
 
                         <div class="card-body">
+                            {{-- tanggal transaksi --}}
+                            <div class="mb-3">
+                                <label for="tanggal_transaksi" class="form-label">Tanggal Transaksi</label>
+                                <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi"
+                                    required>
+                            </div>
+
                             {{-- NIS --}}
                             <div class="mb-3">
                                 <label for="nis" class="form-label">NIS</label>
@@ -27,27 +34,24 @@
                                 </select>
                             </div>
 
-                            {{-- tanggal transaksi --}}
+                            {{-- nama --}}
                             <div class="mb-3">
-                                <label for="tanggal_transaksi" class="form-label">Tanggal Transaksi</label>
-                                <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi"
-                                    required>
+                                <label for="nama" class="form-label">Nama</label>
+                                <select class="form-control" name="nama" id="nama">
+                                    <option value="" disabled selected>Pilih Nama</option>
+                                    <option value="akhmad ardiansyah amnur">Akhmad Ardiansyah Amnur</option>
+                                </select>
                             </div>
 
                             {{-- jumlah --}}
                             <div class="mb-3">
-                                <label for="jumlah" class="form-label">Jumlah Penarikan</label>
-                                <input type="number" class="form-control" name="jumlah" id="jumlah"
-                                    placeholder="Jumlah">
+                                <label for="jumlah" class="form-label">Jumlah</label>
+                                <input type="number" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah">
                             </div>
                         </div>
 
-                        <div class="card-footer d-flex flex-row justify-content-between text-end w-full">
-                            <button type="submit" class="btn btn-primary px-5 rounded-pill"
-                                style="width: fit-content">Tarik Saldo</button>
-
-                            <input type="text" class="form-control rounded-pill ms-auto" value="Rp. 150000"
-                                style="width: fit-content" disabled>
+                        <div class="card-footer text-end">
+                            <button type="submit" class="btn btn-primary px-5 rounded-pill">Simpan</button>
                         </div>
                     </form>
                 </div>
