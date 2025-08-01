@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Hidehalo\Nanoid\Client as Nanoid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Santri extends Model
+class Santri extends Authenticatable
 {
+    use HasFactory;
+
     protected $table = 'santri';
     protected $primaryKey = 'nis';
     public $incrementing = false;
@@ -38,7 +41,7 @@ class Santri extends Model
         return $this->hasMany(Tabungan::class, 'nis', 'nis');
     }
 
-    public function penarikan()
+    public function penarikan_tabungan()
     {
         return $this->hasMany(PenarikanTabungan::class, 'nis', 'nis');
     }

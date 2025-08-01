@@ -12,33 +12,36 @@
             <div class="col-md-6">
 
                 <div class="card card-primary card-outline">
-                    <form action="">
-                        <div class="card-header">
-                            <div class="card-title">Penarikan Tabungan</div>
-                        </div>
+                    <div class="card-header">
+                        <div class="card-title">Penarikan Tabungan</div>
+                    </div>
 
+                    <form action="{{ route('post.penarikan_tabungan') }}" method="POST">
+                        @csrf
+                        @method('POST')
                         <div class="card-body">
                             {{-- NIS --}}
                             <div class="mb-3">
                                 <label for="nis" class="form-label">NIS</label>
-                                <select class="form-control" name="nis" id="nis">
+                                <select class="form-control" name="nis" id="nis" required>
                                     <option value="" disabled selected>Pilih NIS</option>
-                                    <option value="12345678">12345678</option>
+                                    @foreach ($santri as $s)
+                                        <option value="{{ $s->nis }}">{{ $s->nis }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             {{-- tanggal transaksi --}}
                             <div class="mb-3">
-                                <label for="tanggal_transaksi" class="form-label">Tanggal Transaksi</label>
-                                <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi"
-                                    required>
+                                <label for="tanggal" class="form-label">Tanggal Transaksi</label>
+                                <input type="date" class="form-control" name="tanggal" id="tanggal" required>
                             </div>
 
                             {{-- jumlah --}}
                             <div class="mb-3">
-                                <label for="jumlah" class="form-label">Jumlah Penarikan</label>
-                                <input type="number" class="form-control" name="jumlah" id="jumlah"
-                                    placeholder="Jumlah">
+                                <label for="total" class="form-label">Total Penarikan</label>
+                                <input type="number" class="form-control" name="total" id="total"
+                                    placeholder="Total">
                             </div>
                         </div>
 
@@ -46,7 +49,7 @@
                             <button type="submit" class="btn btn-primary px-5 rounded-pill"
                                 style="width: fit-content">Tarik Saldo</button>
 
-                            <input type="text" class="form-control rounded-pill ms-auto" value="Rp. 150000"
+                            <input type="text" class="form-control rounded-pill ms-auto" value="{{ $total_tabungan }}"
                                 style="width: fit-content" disabled>
                         </div>
                     </form>

@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card card-body">
-                    <img src="" alt="" class="">
+                    <img src="/storage/bukti/{{ $bukti }}" alt="" class="">
                 </div>
             </div>
         </div>

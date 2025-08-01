@@ -16,32 +16,35 @@
                         <table class="table table-bordered" role="table">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center" style="width: 3%;">No</th>
-                                    <th scope="col" class="text-center" style="width: 8%;">NIS</th>
-                                    <th scope="col" class="text-center" style="width: 22%;">Nama</th>
-                                    <th scope="col" class="text-center" style="width: 10%;">Jenis Kelamin</th>
-                                    <th scope="col" class="text-center" style="width: 10%;">Kelas</th>
-                                    <th scope="col" class="text-center" style="width: 20%;">Tanggal</th>
-                                    <th scope="col" class="text-center" style="width: 10%;">Jumlah Saldo</th>
+                                    <th scope="col" class="text-center">No</th>
+                                    <th scope="col" class="text-center">NIS</th>
+                                    <th scope="col" class="text-center">Nama</th>
+                                    <th scope="col" class="text-center">Jenis Kelamin</th>
+                                    <th scope="col" class="text-center">Kelas</th>
+                                    <th scope="col" class="text-center">Tanggal</th>
+                                    <th scope="col" class="text-center">Jumlah</th>
                                     <th scope="col" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td>1.</td>
-                                    <td>12345678</td>
-                                    <td>Akhmad Ardiansyah Amnur</td>
-                                    <td>Laki-Laki</td>
-                                    <td>TKA</td>
-                                    <td>Rabu, 20 November 2025</td>
-                                    <td>Rp. 10.000,00-</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-primary">
-                                            <i class="bi bi-note"></i>
-                                            Lihat Bukti
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach ($iuran as $i)
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $i->nis }}</td>
+                                        <td>{{ $i->santri->nama }}</td>
+                                        <td>{{ $i->santri->jenis_kelamin }}</td>
+                                        <td>{{ $i->santri->kelas }}</td>
+                                        <td>{{ $i->tanggal }}</td>
+                                        <td>{{ $i->jumlah }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.bukti_pemabayaran_iuran', ['bukti' => $i->bukti]) }}"
+                                                class="btn btn-primary">
+                                                <i class="bi bi-note"></i>
+                                                Lihat Bukti
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

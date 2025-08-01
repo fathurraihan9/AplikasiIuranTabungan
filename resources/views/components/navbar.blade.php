@@ -13,11 +13,16 @@
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item d-none d-md-block ml-auto"><a href="#" class="nav-link">Kontak</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Logout</a></li>
+            <li class="nav-item d-none d-md-block ml-auto">
+                <a href="#" class="nav-link">Kontak</a>
+            </li>
+            <li class="nav-item d-none d-md-block">
+                <button type="button" class="nav-link" data-toggle="modal" data-target="#logoutModal">Logout</button>
+            </li>
         </ul>
         <!--end::End Navbar Links-->
     </div>
     <!--end::Container-->
 </nav>
 <!--end::Header-->
+<x-modal-logout></x-modal-logout>

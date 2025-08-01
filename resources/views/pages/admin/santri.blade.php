@@ -17,27 +17,31 @@
                     </div>
                     <!--end::Header-->
                     <!--begin::Form-->
-                    <form>
+                    <form action="{{ route('post.tambah_santri') }}" method="POST">
+                        @csrf
+                        @method('POST')
                         <!--begin::Body-->
                         <div class="card-body">
                             {{-- input NIS --}}
                             <div class="mb-3">
                                 <label for="nis" class="form-label">NIS</label>
-                                <input type="text" class="form-control" name="nis" id="nis"
-                                    placeholder="Nomor Induk Santri">
+                                <input type="text" name="nis" class="form-control" name="nis" id="nis"
+                                    placeholder="Nomor Induk Santri" required>
                             </div>
                             {{-- input nama --}}
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
+                                <input type="text" name="nama" class="form-control" name="nama" id="nama"
+                                    placeholder="Nama" required>
                             </div>
                             {{-- input jenis kelamin --}}
                             <div class="mb-3">
                                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" value="">
+                                <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" value=""
+                                    required>
                                     <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                                    <option value="lk">Laki-Laki</option>
-                                    <option value="pr">Perempuan</option>
+                                    <option value="laki-laki">Laki-Laki</option>
+                                    <option value="perempuan">Perempuan</option>
                                 </select>
                             </div>
                             {{-- input kelas --}}
@@ -45,8 +49,8 @@
                                 <label for="kelas" class="form-label">Kelas</label>
                                 <select class="form-control" name="kelas" id="kelas">
                                     <option value="" disabled selected>Pilih Kelas</option>
-                                    <option value="tka">TKA</option>
-                                    <option value="tqa">TQA</option>
+                                    <option value="TKA">TKA</option>
+                                    <option value="TQA">TQA</option>
                                 </select>
                             </div>
                         </div>
@@ -74,32 +78,34 @@
                         <table class="table table-bordered" role="table">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center" style="width: 10px">No</th>
-                                    <th scope="col" class="text-center" style="width: 80px;">NIS</th>
-                                    <th scope="col" class="text-center" style="width: 400px;">Nama</th>
-                                    <th scope="col" class="text-center" style="width: 115px;">Jenis Kelamin</th>
-                                    <th scope="col" class="text-center" style="width: 80px;">Kelas</th>
+                                    <th scope="col" class="text-center">No</th>
+                                    <th scope="col" class="text-center">NIS</th>
+                                    <th scope="col" class="text-center">Nama</th>
+                                    <th scope="col" class="text-center">Jenis Kelamin</th>
+                                    <th scope="col" class="text-center">Kelas</th>
                                     <th scope="col" class="text-center">Kelola</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td>1.</td>
-                                    <td>12345678</td>
-                                    <td>Akhmad Ardiansyah Amnur</td>
-                                    <td>Laki-Laki</td>
-                                    <td>TKA</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-success">
-                                            <i class="bi bi-pencil"></i>
-                                            Edit
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <i class="bi bi-trash"></i>
-                                            Hapus
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach ($santri as $s)
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $s->nis }}</td>
+                                        <td>{{ $s->nama }}</td>
+                                        <td>{{ $s->jenis_kelamin }}</td>
+                                        <td>{{ $s->kelas }}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success">
+                                                <i class="bi bi-pencil"></i>
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <i class="bi bi-trash"></i>
+                                                Hapus
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

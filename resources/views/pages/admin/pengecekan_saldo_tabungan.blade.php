@@ -25,18 +25,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td class="text-center">1.</td>
-                                    <td>12345678</td>
-                                    <td>Akhmad Ardiansyah Amnur</td>
-                                    <td>Laki-Laki</td>
-                                    <td>TKA</td>
-                                    <td>Rp. 10.000,00-</td>
-                                </tr>
+                                @foreach ($santri as $s)
+                                    @php
+                                        $totalSetoran = $s->tabungan_sum_setoran;
+                                        $totalPenarikan = $s->penarikan_tabungan_sum_total;
+                                        $saldo = $totalSetoran - $totalPenarikan;
+                                    @endphp
+
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $s->nis }}</td>
+                                        <td>{{ $s->nama }}</td>
+                                        <td>{{ $s->jenis_kelamin }}</td>
+                                        <td>{{ $s->kelas }}</td>
+                                        <td>Rp {{ number_format($saldo, 0, ',', '.') }}</td>
+                                    </tr>
+                                @endforeach
 
                                 <tr>
                                     <td colspan="5" class="text-center fw-bold">Jumlah</td>
-                                    <td class="fw-bold">Rp. 150000</td>
+                                    <td class="fw-bold">{{ $jumlah_saldo }}</td>
                                 </tr>
                             </tbody>
                         </table>

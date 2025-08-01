@@ -36,9 +36,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admins',
+        ],
+        'santri' => [
+            'driver' => 'session',
+            'provider' => 'santris',
         ],
     ],
 
@@ -60,11 +64,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\Admin::class,
         ],
-
+        'santris' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Santri::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

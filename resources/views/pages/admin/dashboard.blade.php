@@ -12,7 +12,7 @@
             <div class="col-lg-4 col-6">
                 <div class="small-box text-bg-primary">
                     <div class="inner">
-                        <h3>20</h3>
+                        <h3>{{ $total_santri }}</h3>
                         <p>Jumlah Santri</p>
                     </div>
                     <i class="small-box-icon bi bi-people"></i>
@@ -25,7 +25,7 @@
             <div class="col-lg-4 col-6">
                 <div class="small-box text-bg-warning">
                     <div class="inner">
-                        <h3>Rp. 200.000,00-</h3>
+                        <h3>{{ $total_iuran }}</h3>
                         <p>Total Iuran Masuk Bulan Ini</p>
                     </div>
                     <i class="small-box-icon bi bi-cash"></i>
@@ -38,7 +38,7 @@
             <div class="col-lg-4 col-6">
                 <div class="small-box text-bg-primary">
                     <div class="inner">
-                        <h3>Rp. 250.000,00-</h3>
+                        <h3>{{ $total_tabungan }}</h3>
                         <p>Total Tabungan</p>
                     </div>
                     <i class="small-box-icon bi bi-bank"></i>

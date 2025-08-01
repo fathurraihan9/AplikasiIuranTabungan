@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class tabungan extends Model
+class Tabungan extends Model
 {
+    use HasFactory;
+
     protected $table = 'tabungan';
     public $timestamps = false;
 
-    protected $fillable = ['nis', 'tanggal', 'setoran'];
+    protected $fillable = ['nis', 'tanggal', 'setoran', 'bukti'];
 
     public function santri()
     {
