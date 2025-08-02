@@ -54,13 +54,6 @@
                                 <input type="number" class="form-control" name="setoran" id="setoran"
                                     placeholder="Setoran" required>
                             </div>
-
-                            {{-- bukti --}}
-                            <div class="mb-3">
-                                <label for="bukti" class="form-label">Bukti Setoran</label>
-                                <input type="file" name="bukti" class="form-control" accept="image/*" id="bukti"
-                                    placeholder="bukti" required>
-                            </div>
                         </div>
 
                         <div class="card-footer text-end">

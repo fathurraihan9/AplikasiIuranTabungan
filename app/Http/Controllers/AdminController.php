@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Utils\Helper;
 use App\Models\Santri;
 use App\Models\Iuran;
@@ -134,24 +135,12 @@ class AdminController extends Controller
             'nis' => ['required'],
             'nama' => ['required'],
             'setoran' => ['required'],
-            'bukti' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ]);
 
-        $nis = $request->input('nis');
-
-        $file = $request->file('bukti');
-
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '_' . $nis . '.' . $extension;
-
-        // simpan ke storage/app/public/bukti
-        $file->storePubliclyAs('bukti', $filename, 'public');
-
         $data = [
-            'nis' => $nis,
+            'nis' => $request->input('nis'),
             'tanggal' => $request->input('tanggal'),
-            'setoran' => $request->input('setoran'),
-            'bukti' => $filename
+            'setoran' => $request->input('setoran')
         ];
 
         Tabungan::create($data);
@@ -228,8 +217,96 @@ class AdminController extends Controller
 
     public function HalamanRiwayatTransaksi(Request $request)
     {
-        $santri = Santri::all()->toArray();
+        $transaksi = Tabungan::select(
+            'id',
+            'nis',
+            'tanggal',
+            'setoran',
+            DB::raw("'setoran' as jenis"),
+            DB::raw("'Setor tabungan' as keterangan")
+        )
+            ->unionAll(
+                PenarikanTabungan::select(
+                    'id',
+                    'nis',
+                    'tanggal',
+                    'total',
+                    DB::raw("'total' as jenis"),
+                    DB::raw("'Tarik tabungan' as keterangan")
+                )
+            )
+            ->get()
+            ->load('santri');
 
-        return view('pages.admin.riwayat_transaksi_tabungan');
+        $transaksi = $transaksi->sortByDesc('tanggal')->values();
+
+        return view('pages.admin.riwayat_transaksi_tabungan', [
+            'transaksi' => $transaksi
+        ]);
+    }
+
+    public function HalamanBuktiSetoran(Request $request, string $id)
+    {
+        $transaksi_tabungan = Tabungan::with('santri')->find($id);
+
+        return view('pages.admin.bukti_setoran', [
+            'transaksi_tabungan' => $transaksi_tabungan
+        ]);
+    }
+
+    public function HalamanBuktiPenarikan(Request $request, string $id)
+    {
+        $transaksi_tabungan = PenarikanTabungan::with('santri')->find($id);
+
+        return view('pages.admin.bukti_penarikan', [
+            'transaksi_tabungan' => $transaksi_tabungan
+        ]);
+    }
+
+    public function HalamanLaporanIuran(Request $request)
+    {
+        $total_iuran = Iuran::sum('jumlah');
+
+        $transaksi_iuran = Iuran::with('santri')->get();
+
+        return view('pages.admin.laporan_iuran', [
+            'total_iuran' => $total_iuran,
+            'transaksi_iuran' => $transaksi_iuran
+        ]);
+    }
+
+    public function HalamanLaporanTabungan(Request $request)
+    {
+        $total_setoran = Tabungan::sum('setoran');
+        $total_penarikan = PenarikanTabungan::sum('total');
+
+        $transaksi = Tabungan::select(
+            'id',
+            'nis',
+            'tanggal',
+            DB::raw('setoran as jumlah'),
+            DB::raw("'setoran' as jenis"),
+            DB::raw("'Setor tabungan' as keterangan")
+        )
+            ->unionAll(
+                PenarikanTabungan::select(
+                    'id',
+                    'nis',
+                    'tanggal',
+                    DB::raw('total as jumlah'),
+                    DB::raw("'penarikan' as jenis"),
+                    DB::raw("'Tarik tabungan' as keterangan")
+                )
+            )
+            ->get()
+            ->load('santri');
+
+        $transaksi = $transaksi->sortByDesc('tanggal')->values();
+
+        // dd($transaksi);
+        return view('pages.admin.laporan_tabungan', [
+            'total_tabungan' => $total_setoran - $total_penarikan,
+            'tabungan_santri' => $transaksi
+        ]);
     }
 }

@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri></x-profile-santri>
+        <x-profile-santri :santri="$santri"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-8">
@@ -25,14 +25,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td class="text-center">1.</td>
-                                    <td>28-09-2025</td>
-                                    <td>Rp. 10.000</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-primary">Lihat Pembayaran</button>
-                                    </td>
-                                </tr>
+                                @foreach ($transaksi_iuran as $t)
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $t->tanggal }}</td>
+                                        <td>{{ $t->jumlah }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('santri.bukti_pembayaran_iuran', ['bukti' => $t->bukti]) }}"
+                                                class="btn btn-primary">
+                                                Lihat Pembayaran
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

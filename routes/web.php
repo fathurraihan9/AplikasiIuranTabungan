@@ -48,33 +48,30 @@ Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () 
 
     Route::get('/riwayat-transaksi-tabungan', [AdminController::class, 'HalamanRiwayatTransaksi'])->name('admin.riwayat_transaksi_tabungan');
 
-    Route::get('/laporan-iuran', function () {
-        return view('pages.admin.laporan_iuran');
-    })->name('admin.laporan_iuran');
+    Route::get('/bukti-setoran/{id}', [AdminController::class, 'HalamanBuktiSetoran'])->name('admin.bukti_setoran');
 
-    Route::get('/laporan-tabungan', function () {
-        return view('pages.admin.laporan_tabungan');
-    })->name('admin.laporan_tabungan');
+    Route::get('/bukti-penarikan/{id}', [AdminController::class, 'HalamanBuktiPenarikan'])->name('admin.bukti_penarikan');
+
+    Route::get('/laporan-iuran', [AdminController::class, 'HalamanLaporanIuran'])->name('admin.laporan_iuran');
+
+    Route::get('/laporan-tabungan', [AdminController::class, 'HalamanLaporanTabungan'])->name('admin.laporan_tabungan');
 
 });
 
 Route::prefix('santri')->middleware([SantriMiddleware::class])->group(function () {
+    Route::get('/', [SantriController::class, 'HalamanDashboard'])->name('santri.dashboard');
 
-    Route::get('/', function () {
-        return view('pages.santri.dashboard');
-    })->name('santri.dashboard');
+    Route::get('/iuran', [SantriController::class, 'HalamanRiwayatPembayaranIuran'])->name('santri.riwayat_pembayaran_iuran');
 
-    Route::get('/iuran', function () {
-        return view('pages.santri.riwayat_pembayaran_iuran');
-    })->name('santri.riwayat_pembayaran_iuran');
+    Route::get('/iuran/{bukti}', [SantriController::class, 'HalamanBuktiPembayaranIuran'])->name('santri.bukti_pembayaran_iuran');
 
-    Route::get('/pengecekan-saldo', function () {
-        return view('pages.santri.pengecekan_saldo_tabungan');
-    })->name('santri.pengecekan_saldo_tabungan');
+    Route::get('/pengecekan-saldo', [SantriController::class, 'HalamanPengecekanSaldo'])->name('santri.pengecekan_saldo_tabungan');
 
-    Route::get('/riwayat-transaksi', function () {
-        return view('pages.santri.riwayat_transaksi_tabungan');
-    })->name('santri.riwayat_transaksi_tabungan');
+    Route::get('/riwayat-transaksi', [SantriController::class, 'HalamanRiwayatTransaksi'])->name('santri.riwayat_transaksi_tabungan');
+
+    Route::get('/bukti-setoran/{id}', [SantriController::class, 'HalamanBuktiSetoran'])->name('santri.bukti_setoran');
+
+    Route::get('/bukti-penarikan/{id}', [SantriController::class, 'HalamanBuktiPenarikan'])->name('santri.bukti_penarikan');
 });
 
 Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');

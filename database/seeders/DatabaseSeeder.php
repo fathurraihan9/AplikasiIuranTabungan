@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Iuran;
+use App\Models\PenarikanTabungan;
 use App\Models\Santri;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Tabungan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,6 +25,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('123456'), // wajib di-hash!
         ]);
 
-        Santri::factory()->count(3)->hasTabungan(3)->hasPenarikan(1)->hasIuran(3)->create();
+        Santri::factory()->count(3)
+            ->has(Tabungan::factory()->count(3), 'tabungan')
+            ->has(PenarikanTabungan::factory()->count(3), 'penarikan_tabungan')
+            ->has(Iuran::factory()->count(3), 'iuran')->create();
     }
 }

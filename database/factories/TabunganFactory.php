@@ -18,19 +18,10 @@ class TabunganFactory extends Factory
      */
     public function definition(): array
     {
-        $fakeImage = UploadedFile::fake()->image('bukti.jpg');
-
-        // Simpan file
-        $fakeImage->storeAs('bukti', $fakeImage->hashName(), 'public');
-
-        // Ambil hanya nama filenya saja
-        $fileName = $fakeImage->hashName(); // hasil: abc123.jpg
-
         return [
             'nis' => Santri::inRandomOrder()->first()?->nis ?? Santri::factory(),
             'tanggal' => $this->faker->date(),
-            'setoran' => $this->faker->numberBetween(50000, 200000),
-            'bukti' => $fileName
+            'setoran' => $this->faker->numberBetween(50000, 200000)
         ];
     }
 }

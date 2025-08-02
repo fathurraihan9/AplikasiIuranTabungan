@@ -35,16 +35,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td class="text-center">1.</td>
-                                    <td>12345678</td>
-                                    <td>Akhmad Ardiansyah Amnur</td>
-                                    <td>15-09-2025</td>
-                                    <td>Rp. 10.000,00-</td>
-                                </tr>
+                                @foreach ($transaksi_iuran as $t)
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $t->nis }}</td>
+                                        <td>{{ $t->santri->nama }}</td>
+                                        <td>{{ $t->tanggal }}</td>
+                                        <td>Rp. {{ number_format($t->jumlah, 0, ',', '.') }}</td>
+                                    </tr>
+                                @endforeach
                                 <tr class="align-middle">
                                     <td colspan="4" class="text-center fw-bold">Jumlah</td>
-                                    <td class="text-center">Rp. 150000</td>
+                                    <td class="fw-bold">Rp. {{ number_format($total_iuran, 0, ',', '.') }}</td>
                                 </tr>
                             </tbody>
                         </table>

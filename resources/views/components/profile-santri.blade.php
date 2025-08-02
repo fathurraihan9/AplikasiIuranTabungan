@@ -4,23 +4,26 @@
             <form action="">
                 <div class="mb-3">
                     <label class="form-label">NIS</label>
-                    <input type="text" class="form-control" value="12345678" placeholder="Nomor Induk Santri" disabled>
+                    <input type="text" class="form-control" value="{{ $santri->nis }}" placeholder="Nomor Induk Santri"
+                        disabled>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Nama</label>
-                    <input type="text" class="form-control" value="Akhmd Ardiansyah Amnur" placeholder="Nama Santri"
+                    <input type="text" class="form-control" value="{{ $santri->nama }}" placeholder="Nama Santri"
                         disabled>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Kelas</label>
-                    <input type="text" class="form-control" value="TKA" placeholder="Nama Santri" disabled>
+                    <input type="text" class="form-control" value="{{ $santri->kelas }}" placeholder="Nama Santri"
+                        disabled>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Jenis Kelamin</label>
-                    <input type="text" class="form-control" value="laki-laki" placeholder="Nama Santri" disabled>
+                    <input type="text" class="form-control" value="{{ $santri->jenis_kelamin }}"
+                        placeholder="Nama Santri" disabled>
                 </div>
             </form>
         </div>

@@ -12,7 +12,7 @@ class Tabungan extends Model
     protected $table = 'tabungan';
     public $timestamps = false;
 
-    protected $fillable = ['nis', 'tanggal', 'setoran', 'bukti'];
+    protected $fillable = ['nis', 'tanggal', 'setoran'];
 
     public function santri()
     {

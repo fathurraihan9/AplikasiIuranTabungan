@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <a href="{{ route('admin.riwayat_transaksi_tabungan') }}"class="btn btn-danger w-100">
+                        <a href="{{ route('santri.riwayat_transaksi_tabungan') }}"class="btn btn-danger w-100">
                             <i class="bi bi-arrow-left"></i>
                             Kembali
                         </a>

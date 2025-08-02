@@ -17,7 +17,7 @@ class SantriMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('santri')->check()) {
-            return redirect()->route('login')->with('msg_err', 'Silakan login sebagai admin');
+            return redirect()->route('login')->with('msg_error', 'Silakan login sebagai admin');
         }
 
         return $next($request);

@@ -8,13 +8,13 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri></x-profile-santri>
+        <x-profile-santri :santri="$santri"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="small-box text-bg-primary">
                     <div class="inner">
-                        <h3>Rp. 150.000</h3>
+                        <h3>{{ $total_iuran }}</h3>
                         <p>Total Iuran Masuk Bulan Ini</p>
                     </div>
                     <i class="small-box-icon bi bi-people"></i>
@@ -24,7 +24,7 @@
             <div class="col-md-6">
                 <div class="small-box text-bg-success">
                     <div class="inner">
-                        <h3>Rp. 150.000</h3>
+                        <h3>{{ $total_saldo_tabungan }}</h3>
                         <p>Total Tabungani</p>
                     </div>
                     <i class="small-box-icon bi bi-people"></i>

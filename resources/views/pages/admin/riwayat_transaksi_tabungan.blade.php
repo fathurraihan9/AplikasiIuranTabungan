@@ -28,32 +28,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td class="text-center">1.</td>
-                                    <td>12345678</td>
-                                    <td>Akhmad Ardiansyah Amnur</td>
-                                    <td>Laki-Laki</td>
-                                    <td>TKA</td>
-                                    <td>15-09-2025</td>
-                                    <td>Rp. 10.000,00-</td>
-                                    <td>-</td>
-                                    <td>
-                                        <button class="btn btn-primary">Bukti Setoran</button>
-                                    </td>
-                                </tr>
-                                <tr class="align-middle">
-                                    <td class="text-center">1.</td>
-                                    <td>12345678</td>
-                                    <td>Akhmad Ardiansyah Amnur</td>
-                                    <td>Laki-Laki</td>
-                                    <td>TKA</td>
-                                    <td>15-09-2025</td>
-                                    <td>Rp. 10.000,00-</td>
-                                    <td>-</td>
-                                    <td>
-                                        <button class="btn btn-primary">Bukti Penarikan</button>
-                                    </td>
-                                </tr>
+                                @foreach ($transaksi as $t)
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $t->nis }}</td>
+                                        <td>{{ $t->santri->nama }}</td>
+                                        <td>{{ $t->santri->jenis_kelamin }}</td>
+                                        <td>{{ $t->santri->kelas }}</td>
+                                        <td>{{ $t->tanggal }}</td>
+                                        <td>Rp. {{ number_format($t->setoran, 0, ',', '.') }}</td>
+                                        <td>{{ $t->keterangan }}</td>
+                                        <td>
+                                            @if ($t->keterangan == 'Setor tabungan')
+                                                <a href="{{ route('admin.bukti_setoran', ['id' => $t->id]) }}"
+                                                    class="btn btn-success">
+                                                    Bukti Setoran
+                                                </a>
+                                            @elseif ($t->keterangan == 'Tarik tabungan')
+                                                <a href="{{ route('admin.bukti_penarikan', ['id' => $t->id]) }}"
+                                                    class="btn btn-primary">
+                                                    Bukti Penarikan
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

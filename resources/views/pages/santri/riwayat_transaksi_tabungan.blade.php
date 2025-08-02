@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri></x-profile-santri>
+        <x-profile-santri :santri="$santri"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-8">
@@ -25,14 +25,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="align-middle">
-                                    <td class="text-center">1.</td>
-                                    <td>Rp. 10.000</td>
-                                    <td>-</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-primary">Bukti Penarikan</button>
-                                    </td>
-                                </tr>
+                                @foreach ($transaksi_tabungan as $t)
+                                    <tr class="align-middle">
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $t->jumlah }}</td>
+                                        <td>{{ $t->keterangan }}</td>
+                                        <td class="text-center">
+                                            @if ($t->jenis == 'Setor')
+                                                <a href="{{ route('santri.bukti_setoran', ['id' => $t->id]) }}"
+                                                    class="btn btn-primary">Bukti
+                                                    Setoran
+                                                </a>
+                                            @elseif ($t->jenis == 'Tarik')
+                                                <a href="{{ route('santri.bukti_penarikan', ['id' => $t->id]) }}"
+                                                    class="btn btn-success">
+                                                    Bukti Penarikan
+                                                </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

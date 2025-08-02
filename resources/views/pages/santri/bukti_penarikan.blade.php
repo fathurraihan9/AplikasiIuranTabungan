@@ -2,7 +2,7 @@
 
 @section('app-content-header')
     <div class="container-fluid">
-        <h2>Setoran Tabungan</h2>
+        <h2>Penarikan Tabungan</h2>
     </div>
 @endsection
 
@@ -34,13 +34,13 @@
 
                     {{-- jumlah --}}
                     <div class="mb-3">
-                        <label for="setoran" class="form-label">Setoran</label>
-                        <input type="textr" class="form-control" name="setoran" id="setoran" placeholder="Setoran"
-                            value="Rp. {{ number_format($transaksi_tabungan->setoran, 0, ',', '.') }}" disabled>
+                        <label for="total" class="form-label">Total</label>
+                        <input type="textr" class="form-control" name="total" id="total" placeholder="Total"
+                            value="Rp. {{ number_format($transaksi_tabungan->total, 0, ',', '.') }}" disabled>
                     </div>
 
                     <div class="mb-3">
-                        <a href="{{ route('admin.riwayat_transaksi_tabungan') }}"class="btn btn-danger w-100">
+                        <a href="{{ route('santri.riwayat_transaksi_tabungan') }}"class="btn btn-danger w-100">
                             <i class="bi bi-arrow-left"></i>
                             Kembali
                         </a>
