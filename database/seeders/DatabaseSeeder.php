@@ -21,11 +21,6 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Admin::factory()->create([
-            'username' => 'admin',
-            'password' => Hash::make('123456'), // wajib di-hash!
-        ]);
-
         Santri::factory()->count(3)
             ->has(Tabungan::factory()->count(3), 'tabungan')
             ->has(PenarikanTabungan::factory()->count(3), 'penarikan_tabungan')
