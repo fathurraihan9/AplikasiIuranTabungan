@@ -49,5 +49,7 @@
                 </div>
             </div>
         </div>
+
+        <x-pengumuman :notifikasi="$notifikasi"></x-pengumuman>
     </div>
 @endsection

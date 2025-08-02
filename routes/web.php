@@ -30,6 +30,7 @@ Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () 
 
     Route::get('/santri', [AdminController::class, 'HalamanSantri'])->name('admin.santri');
     Route::post('/santri', [AdminController::class, 'TambahSantri'])->name('post.tambah_santri');
+    Route::delete('/santri/{nis}', [AdminController::class, 'HapusSantri'])->name('delete.hapus_santri');
 
     Route::get('/pembayaran-iuran', [AdminController::class, 'HalamanPembayaranIuran'])->name('admin.pembayaran_iuran');
     Route::post('/pembayaran-iuran', [AdminController::class, 'PembayaranIuran'])->name('post.pembayaran_iuran');

@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri :santri="$santri"></x-profile-santri>
+        <x-profile-santri :santri="$santri" :notifikasi="$notifikasi"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-6">
@@ -25,7 +25,7 @@
                 <div class="small-box text-bg-success">
                     <div class="inner">
                         <h3>{{ $total_saldo_tabungan }}</h3>
-                        <p>Total Tabungani</p>
+                        <p>Total Tabungan</p>
                     </div>
                     <i class="small-box-icon bi bi-people"></i>
                 </div>

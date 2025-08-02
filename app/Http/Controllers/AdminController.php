@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -20,10 +21,19 @@ class AdminController extends Controller
         $total_penarikan = PenarikanTabungan::sum('total');
         $total_tabungan = Tabungan::sum('setoran');
 
+        $notifikasi = Notifikasi::with('santri')->get();
+        $notifikasi = $notifikasi->sortDesc();
+
+        foreach ($notifikasi as $n) {
+            $n->jumlah = Helper::stringToRupiah($n->jumlah);
+            $n->tanggal = Helper::getTanggalAttribute($n->tanggal);
+        }
+
         return view('pages.admin.dashboard', [
             'total_santri' => $total_santri,
             'total_iuran' => Helper::stringToRupiah($total_iuran),
-            'total_tabungan' => Helper::stringToRupiah($total_tabungan - $total_penarikan)
+            'total_tabungan' => Helper::stringToRupiah($total_tabungan - $total_penarikan),
+            'notifikasi' => $notifikasi
         ]);
     }
 
@@ -58,6 +68,13 @@ class AdminController extends Controller
         return redirect()
             ->route('admin.santri')
             ->with('msg_success', 'Santri Berhasil Ditambahkan');
+    }
+
+    public function HapusSantri(Request $request, string $nis)
+    {
+        Santri::where('nis', '=', $nis)->delete();
+
+        return redirect()->route('admin.santri')->with('msg_success', 'Santri Berhasil Dihapus');
     }
 
     public function HalamanPembayaranIuran()
@@ -106,6 +123,13 @@ class AdminController extends Controller
     public function HalamanRiwayatPembayaranIuran(Request $request)
     {
         $iuran = Iuran::with('santri')->get();
+
+        foreach ($iuran as $i) {
+            $i->jumlah = Helper::stringToRupiah($i->jumlah);
+            $i->tanggal = Helper::getTanggalAttribute($i->tanggal);
+        }
+
+        $iuran = $iuran->sortByDesc('tanggal');
 
         return view('pages.admin.riwayat_pembayaran_iuran', [
             'iuran' => $iuran
@@ -240,6 +264,10 @@ class AdminController extends Controller
 
         $transaksi = $transaksi->sortByDesc('tanggal')->values();
 
+        foreach ($transaksi as $t) {
+            $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
+        }
+
         return view('pages.admin.riwayat_transaksi_tabungan', [
             'transaksi' => $transaksi
         ]);
@@ -268,6 +296,10 @@ class AdminController extends Controller
         $total_iuran = Iuran::sum('jumlah');
 
         $transaksi_iuran = Iuran::with('santri')->get();
+
+        foreach ($transaksi_iuran as $t) {
+            $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
+        }
 
         return view('pages.admin.laporan_iuran', [
             'total_iuran' => $total_iuran,
@@ -302,6 +334,10 @@ class AdminController extends Controller
             ->load('santri');
 
         $transaksi = $transaksi->sortByDesc('tanggal')->values();
+
+        foreach ($transaksi as $t) {
+            $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
+        }
 
         // dd($transaksi);
         return view('pages.admin.laporan_tabungan', [

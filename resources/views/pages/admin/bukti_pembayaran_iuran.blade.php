@@ -12,6 +12,13 @@
             <div class="col-md-6">
                 <div class="card card-body">
                     <img src="/storage/bukti/{{ $bukti }}" alt="" class="">
+
+                    <div class="mt-3">
+                        <a href="{{route('admin.riwayat_pembayaran_iuran')}}" class="btn btn-danger w-100">
+                            <i class="bi bi-arrow-left"></i>
+                            Kembali
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

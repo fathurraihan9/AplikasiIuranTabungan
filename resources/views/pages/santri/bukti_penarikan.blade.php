@@ -32,6 +32,13 @@
                             value="{{ $transaksi_tabungan->santri->nama }}" disabled>
                     </div>
 
+                    {{-- tanggal --}}
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="text" class="form-control" name="tanggal" id="tanggal"
+                            value="{{ $transaksi_tabungan->tanggal }}" disabled>
+                    </div>
+
                     {{-- jumlah --}}
                     <div class="mb-3">
                         <label for="total" class="form-label">Total</label>

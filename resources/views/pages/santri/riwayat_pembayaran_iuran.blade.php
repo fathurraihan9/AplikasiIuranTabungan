@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri :santri="$santri"></x-profile-santri>
+        <x-profile-santri :santri="$santri" :notifikasi="$notifikasi"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-8">

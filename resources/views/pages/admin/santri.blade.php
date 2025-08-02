@@ -95,14 +95,41 @@
                                         <td>{{ $s->jenis_kelamin }}</td>
                                         <td>{{ $s->kelas }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-success">
-                                                <i class="bi bi-pencil"></i>
-                                                Edit
-                                            </button>
-                                            <button class="btn btn-danger">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#santri{{ $loop->iteration }}Modal">
                                                 <i class="bi bi-trash"></i>
                                                 Hapus
                                             </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="santri{{ $loop->iteration }}Modal" tabindex="-1"
+                                                aria-labelledby="santri{{ $loop->iteration }}ModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"
+                                                                id="santri{{ $loop->iteration }}ModalLabel">
+                                                                Hapus Santri
+                                                            </h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah anda ingin menghapus santri ({{ $s->nama }})?
+                                                        </div>
+                                                        <form
+                                                            action="{{ route('delete.hapus_santri', ['nis' => $s->nis]) }}"
+                                                            class="modal-footer" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="bi bi-trash"></i>
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

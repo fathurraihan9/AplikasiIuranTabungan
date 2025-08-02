@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri :santri="$santri"></x-profile-santri>
+        <x-profile-santri :santri="$santri" :notifikasi="$notifikasi"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-8">
@@ -20,22 +20,22 @@
                                 <tr>
                                     <th scope="col" class="text-center" style="width: 3%;">No</th>
                                     <th scope="col" class="text-center" style="width: 8%;">Tanggal</th>
-                                    <th scope="col" class="text-center" style="width: 22%;">Jumlah</th>
+                                    <th scope="col" class="text-center" style="width: 22%;">Setoran</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($transaksi_tabungan as $t)
+                                @foreach ($tabungan as $t)
                                     <tr class="align-middle">
                                         <td class="text-center">{{ $loop->iteration }}.</td>
                                         <td>{{ $t->tanggal }}</td>
-                                        <td>Rp. 10.000</td>
+                                        <td>{{ $t->setoran }}</td>
                                     </tr>
                                 @endforeach
 
-                                <tr>
+                                {{-- <tr>
                                     <td colspan="2" class="text-center fw-bold">Jumlah Saldo</td>
-                                    <td class="fw-bold">Rp. 10.000</td>
-                                </tr>
+                                    <td class="fw-bold">{{$total_saldo_tabungan}}</td>
+                                </tr> --}}
                             </tbody>
                         </table>
                     </div>

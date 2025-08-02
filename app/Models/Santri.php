@@ -45,4 +45,9 @@ class Santri extends Authenticatable
     {
         return $this->hasMany(PenarikanTabungan::class, 'nis', 'nis');
     }
+
+    public function notifikasi()
+    {
+        return $this->hasMany(Notifikasi::class, 'nis', 'nis');
+    }
 }

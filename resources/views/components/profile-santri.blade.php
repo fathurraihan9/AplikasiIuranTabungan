@@ -28,4 +28,7 @@
             </form>
         </div>
     </div>
+    <div class="col-md-6">
+        <x-pengumuman :notifikasi="$notifikasi"></x-pengumuman>
+    </div>
 </div>

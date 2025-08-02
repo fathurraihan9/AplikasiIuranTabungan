@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri :santri="$santri"></x-profile-santri>
+        <x-profile-santri :santri="$santri" :notifikasi="$notifikasi"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-8">
@@ -18,10 +18,11 @@
                         <table class="table table-bordered" role="table">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center" style="width: 3%;">No</th>
-                                    <th scope="col" class="text-center" style="width: 22%;">Jumlah</th>
-                                    <th scope="col" class="text-center" style="width: 8%;">Ket</th>
-                                    <th scope="col" class="text-center" style="width: 8%;">Aksi</th>
+                                    <th scope="col" class="text-center">No</th>
+                                    <th scope="col" class="text-center">Jumlah</th>
+                                    <th scope="col" class="text-center">Tanggal</th>
+                                    <th scope="col" class="text-center">Ket</th>
+                                    <th scope="col" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,6 +30,7 @@
                                     <tr class="align-middle">
                                         <td class="text-center">{{ $loop->iteration }}.</td>
                                         <td>{{ $t->jumlah }}</td>
+                                        <td>{{ $t->tanggal }}</td>
                                         <td>{{ $t->keterangan }}</td>
                                         <td class="text-center">
                                             @if ($t->jenis == 'Setor')
