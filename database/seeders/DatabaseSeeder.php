@@ -6,11 +6,10 @@ use App\Models\Admin;
 use App\Models\Iuran;
 use App\Models\Notifikasi;
 use App\Models\PenarikanTabungan;
+use App\Models\Pesan;
 use App\Models\Santri;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Tabungan;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,5 +26,7 @@ class DatabaseSeeder extends Seeder
             ->has(Iuran::factory()->count(3), 'iuran')
             ->has(Notifikasi::factory()->count(3))
             ->create();
+
+        Pesan::factory()->count(10)->create();
     }
 }

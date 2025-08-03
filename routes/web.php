@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
@@ -10,9 +11,24 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\SantriMiddleware;
 use App\Http\Middleware\RedirectIfAuthenticatedMulti;
 
+use App\Model\Pesan;
+
 Route::get('/', function () {
-    return redirect('/auth/login');
-});
+    return view('pages.welcome');
+})->name('landing_page.welcome');
+
+Route::get('/media', function () {
+    return view('pages.media');
+})->name('landing_page.media');
+
+Route::get('/profil', function () {
+    return view('pages.profil');
+})->name('landing_page.profil');
+
+Route::get('/kontak', function () {
+    return view('pages.kontak');
+})->name('landing_page.kontak');
+Route::post('/kontak', [LandingPageController::class, 'TambahPesan'])->name('post.kontak');
 
 Route::prefix('auth')->middleware([RedirectIfAuthenticatedMulti::class])->group(function () {
     Route::get('', function () {
@@ -27,6 +43,8 @@ Route::prefix('auth')->middleware([RedirectIfAuthenticatedMulti::class])->group(
 
 Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () {
     Route::get('/', [AdminController::class, 'HalamanDashboard'])->name('admin.dashboard');
+
+    Route::get('/pesan', [LandingPageController::class, 'HalamanLihatPesan'])->name('admin.pesan');
 
     Route::get('/santri', [AdminController::class, 'HalamanSantri'])->name('admin.santri');
     Route::post('/santri', [AdminController::class, 'TambahSantri'])->name('post.tambah_santri');

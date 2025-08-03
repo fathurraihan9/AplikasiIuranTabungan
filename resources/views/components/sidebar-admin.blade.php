@@ -127,6 +127,14 @@ class="brand-image opacity-75 shadow" /> --}}
                         </li>
                     </ul>
                 </li>
+
+                {{-- pesan --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.pesan') }}" class="nav-link">
+                        <i class="nav-icon bi bi-envelope"></i>
+                        <p>Pesan</p>
+                    </a>
+                </li>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>
