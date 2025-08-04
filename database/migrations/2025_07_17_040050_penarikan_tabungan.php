@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('penarikan_tabungan', function (Blueprint $table) {
             $table->id();
-            $table->char('nis', 8);
+            $table->char('nis', 10);
             $table->date('tanggal');
             $table->integer('total');
 

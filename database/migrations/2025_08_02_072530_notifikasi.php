@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('notifikasi', function (Blueprint $table) {
             $table->id();
             $table->string('jenis_transaksi');
-            $table->char('nis', 8);
+            $table->char('nis', 10);
             $table->integer('jumlah');
             $table->date('tanggal');
             $table->string('keterangan')->nullable();
