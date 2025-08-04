@@ -28,30 +28,10 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
                         <div class="portfolio-content h-100">
-                            <img src="photo/photo-2.jpeg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Photo 2</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
                             <img src="photo/photo-1.jpeg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>Photo 1</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets/img/portfolio/product-1.jpg" title="Product 1"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <a href="photo/photo-1.jpeg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                             </div>
                         </div>
                     </div><!-- End Portfolio Item -->
@@ -60,13 +40,67 @@
                         <div class="portfolio-content h-100">
                             <img src="photo/photo-2.jpeg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>Photo 2</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                                <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <a href="photo/photo-2.jpeg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <div class="portfolio-content h-100">
+                            <img src="photo/photo-3.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <a href="photo/photo-3.jpg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <div class="portfolio-content h-100">
+                            <img src="photo/photo-4.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <a href="photo/photo-4.jpg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <div class="portfolio-content h-100">
+                            <img src="photo/photo-6.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <a href="photo/photo-6.jpg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <div class="portfolio-content h-100">
+                            <img src="photo/photo-8.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <a href="photo/photo-8.jpg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <div class="portfolio-content h-100">
+                            <img src="photo/photo-10.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <a href="photo/photo-10.jpg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Portfolio Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                        <div class="portfolio-content h-100">
+                            <img src="photo/photo-11.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <a href="photo/photo-11.jpg" data-gallery="portfolio-gallery-branding"
+                                    class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                             </div>
                         </div>
                     </div><!-- End Portfolio Item -->

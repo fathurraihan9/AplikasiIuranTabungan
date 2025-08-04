@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->char('nis', 8);
             $table->date('tanggal');
             $table->integer('jumlah');
-            $table->string('bukti', 100);
 
             $table->foreign('nis')->references('nis')->on('santri')->onDelete('cascade');
         });

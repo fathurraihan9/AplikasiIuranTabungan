@@ -63,6 +63,8 @@ class AdminController extends Controller
             'password' => Hash::make($request->input('nis'))
         ];
 
+        // dd($data);
+
         Santri::create($data);
 
         return redirect()
@@ -91,33 +93,37 @@ class AdminController extends Controller
         $request->validate([
             'tanggal' => ['required', 'date'],
             'nis' => ['required'],
-            'nama' => ['required'],
-            'jumlah' => ['required'],
-            'bukti' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+            'jumlah' => ['required']
         ]);
-
-        $nis = $request->input('nis');
-
-        $file = $request->file('bukti');
-
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '_' . $nis . '.' . $extension;
-
-        // simpan ke storage/app/public/bukti
-        $file->storePubliclyAs('bukti', $filename, 'public');
 
         $data = [
             'tanggal' => $request->input('tanggal'),
-            'nis' => $nis,
-            'jumlah' => $request->input('jumlah'),
-            'bukti' => $filename
+            'nis' => $request->input('nis'),
+            'jumlah' => $request->input('jumlah')
         ];
 
-        Iuran::create($data);
+        // dd($data);
+        try {
+            Iuran::create($data);
+            Notifikasi::create([
+                'nis' => $data['nis'],
+                'jenis_transaksi' => 'iuran',
+                'jumlah' => $data['jumlah'],
+                'tanggal' => $data['tanggal'],
+                'keterangan' => 'Pembayaran iuran terbaru',
+            ]);
 
-        return redirect()
-            ->route('admin.pembayaran_iuran')
-            ->with('msg_success', 'Pembayaran Iuran Berhasil');
+            return redirect()
+                ->route('admin.pembayaran_iuran')
+                ->with('msg_success', 'Pembayaran Iuran Berhasil');
+        } catch (\Exception $e) {
+            // Bisa logging juga kalau perlu
+            \Log::error($e);
+
+            return redirect()
+                ->route('admin.pembayaran_iuran')
+                ->with('msg_error', 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage());
+        }
     }
 
     public function HalamanRiwayatPembayaranIuran(Request $request)
@@ -136,10 +142,12 @@ class AdminController extends Controller
         ]);
     }
 
-    public function HalamanBuktiPembayaranIuran(Request $request, string $bukti)
+    public function HalamanBuktiPembayaranIuran(Request $request, string $id)
     {
+        $bukti_pembayaran_iuran = Iuran::where('id', $id)->first();
+
         return view('pages.admin.bukti_pembayaran_iuran', [
-            'bukti' => $bukti
+            'bukti_pembayaran_iuran' => $bukti_pembayaran_iuran
         ]);
     }
 
@@ -157,7 +165,6 @@ class AdminController extends Controller
         $request->validate([
             'tanggal' => ['required', 'date'],
             'nis' => ['required'],
-            'nama' => ['required'],
             'setoran' => ['required'],
         ]);
 
@@ -168,6 +175,13 @@ class AdminController extends Controller
         ];
 
         Tabungan::create($data);
+        Notifikasi::create([
+            'nis' => $data['nis'],
+            'jenis_transaksi' => 'tabungan',
+            'jumlah' => $data['setoran'],
+            'tanggal' => $data['tanggal'],
+            'keterangan' => 'Setoran tabungan terbaru',
+        ]);
 
         return redirect()
             ->route('admin.setoran_tabungan')

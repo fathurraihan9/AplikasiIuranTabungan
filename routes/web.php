@@ -55,7 +55,7 @@ Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () 
 
     Route::get('/riwayat-pembayaran', [AdminController::class, 'HalamanRiwayatPembayaranIuran'])->name('admin.riwayat_pembayaran_iuran');
 
-    Route::get('/bukti-pembayaran-iuran/{bukti}', [AdminController::class, 'HalamanBuktiPembayaranIuran'])->name('admin.bukti_pemabayaran_iuran');
+    Route::get('/bukti-pembayaran-iuran/{id}', [AdminController::class, 'HalamanBuktiPembayaranIuran'])->name('admin.bukti_pemabayaran_iuran');
 
     Route::get('/setoran-tabungan', [AdminController::class, 'HalamanSetoranTabungan'])->name('admin.setoran_tabungan');
     Route::post('/setoran-tabungan', [AdminController::class, 'SetoranTabungan'])->name('post.setoran_tabungan');

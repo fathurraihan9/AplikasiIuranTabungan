@@ -9,12 +9,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>Sejarah Singkat</h3>
-                    <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia
-                        recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
-                    <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia
-                        vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus
-                        nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque
-                        deleniti repellendus.</p>
+                    <p>Sebagai lembaga yang berada di bawah pembinaan LPPTKA BKPRMI Bajeng Barat, TKA-TPA Khusnul Khatimah
+                        mengadopsi sistem pembelajaran dan pembinaan sesuai dengan pedoman yang ditetapkan oleh LPPTKA
+                        BKPRMI. Kegiatan utamanya meliputi pengajaran membaca Al-Qur’an, hafalan surat-surat pendek,
+                        pembinaan akhlak mulia, serta pengenalan dasar-dasar keislaman seperti wudhu, shalat, dan doa
+                        sehari-hari.</p>
+                    <p>Santri aktif di TKA-TPA Khusnul Khatimah saat ini sebanyak 28 orang, yang terdiri dari anak-anak usia
+                        4 hingga 12 tahun. Adapun jumlah tenaga pengajar dan pembina saat ini sebanyak 5 orang, yang
+                        sebagian besar merupakan kader-kader muda dari lingkungan masjid setempat.</p>
                 </div>
                 <div class="col-md-6">
                     <img src="photo/photo-2.jpeg" class="img-fluid rounded-4 mb-4" alt="">
@@ -23,16 +25,19 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <img src="photo/photo-2.jpeg" class="img-fluid rounded-4 mb-4" alt="">
+                    <img src="photo/photo-6.jpg" class="img-fluid rounded-4 mb-4" alt="">
                 </div>
                 <div class="col-md-6">
-                    <h3>Visi dan Misi</h3>
-                    <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia
-                        recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
-                    <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia
-                        vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus
-                        nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque
-                        deleniti repellendus.</p>
+                    <h3>Visi</h3>
+                    <p>“Menyiapkan Generasi Qur’ani Menyongsong Masa Depan Gemilang.”</p>
+
+                    <h3>Misi</h3>
+                    <ol>
+                        <li>Membentuk karakter anak yang mencintai Al-Qur’an dan mengamalkan ajarannya.</li>
+                        <li> Menyediakan layanan pendidikan Al-Qur’an yang terjangkau dan berkualitas.</li>
+                        <li> Melatih anak-anak dalam hal ibadah, akhlak, dan kebiasaan Islami.</li>
+                        <li>Menjalin kerja sama dengan masyarakat sekitar dalam pengembangan pendidikan Islam.</li>
+                    </ol>
                 </div>
             </div>
 

@@ -16,7 +16,7 @@ class Santri extends Authenticatable
     protected $keyType = 'string';
     public $timestamps = false;
 
-    protected $fillable = ['nis', 'nama', 'kelas', 'password'];
+    protected $fillable = ['nis', 'nama', 'jenis_kelamin', 'kelas', 'password'];
 
     protected static function boot()
     {

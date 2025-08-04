@@ -12,7 +12,7 @@ class Iuran extends Model
     protected $table = 'iuran';
     public $timestamps = false;
 
-    protected $fillable = ['nis', 'tanggal', 'jumlah', 'bukti'];
+    protected $fillable = ['nis', 'tanggal', 'jumlah'];
 
     public function santri()
     {

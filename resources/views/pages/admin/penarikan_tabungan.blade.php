@@ -31,6 +31,20 @@
                                 </select>
                             </div>
 
+                            {{-- Nama --}}
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama</label>
+                                <select class="form-control" name="nama" id="nama" disabled required>
+                                    <option value="" disabled selected>Pilih Nama</option>
+                                    @foreach ($santri as $s)
+                                        <option value="{{ $s->nis }}">{{ $s->nama }}</option>
+                                    @endforeach
+                                </select>
+                                @error('nama')
+                                    <div class="alert alert-danger py-1 mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                             {{-- tanggal transaksi --}}
                             <div class="mb-3">
                                 <label for="tanggal" class="form-label">Tanggal Transaksi</label>
@@ -57,4 +71,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('nis').addEventListener('change', function() {
+            var selectedNis = this.value;
+            var namaSelect = document.getElementById('nama');
+            namaSelect.value = selectedNis; // otomatis pilih nama yang value-nya = nis
+        });
+    </script>
 @endsection

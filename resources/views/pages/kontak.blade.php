@@ -21,7 +21,7 @@
                                 data-aos="fade-up" data-aos-delay="200">
                                 <i class="bi bi-geo-alt"></i>
                                 <h3>Alamat</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <p>P95V+9F8, Manjalling, Kec. Bajeng Bar., Kabupaten Gowa, Sulawesi Selatan 92152</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -30,7 +30,7 @@
                                 data-aos="fade-up" data-aos-delay="300">
                                 <i class="bi bi-telephone"></i>
                                 <h3>Nomor yang Bisa Dihubungi</h3>
-                                <p>+1 5589 55488 55</p>
+                                <p>085256656029</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -39,7 +39,7 @@
                                 data-aos="fade-up" data-aos-delay="400">
                                 <i class="bi bi-envelope"></i>
                                 <h3>Email</h3>
-                                <p>info@example.com</p>
+                                <p>husnulkhatimah333999@gmail.com</p>
                             </div>
                         </div><!-- End Info Item -->
 

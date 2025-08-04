@@ -28,5 +28,10 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Pesan::factory()->count(10)->create();
+
+        $this->call([
+            AdminSeeder::class,
+            // tambahkan seeder lain di sini
+        ]);
     }
 }

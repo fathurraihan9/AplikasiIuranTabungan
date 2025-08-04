@@ -16,7 +16,7 @@
                         <div class="card-title">Input / Setoran Tabungan</div>
                     </div>
 
-                    <form action="{{ route('post.setoran_tabungan') }}" enctype="multipart/form-data" method="POST">
+                    <form action="{{ route('post.setoran_tabungan') }}" method="POST">
                         @csrf
                         @method('POST')
                         <div class="card-body">
@@ -40,20 +40,34 @@
                             {{-- nama --}}
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
-                                <select class="form-control" name="nama" id="nama" required>
+                                <select class="form-control" name="nama" id="nama" required disabled>
                                     <option value="" disabled selected>Pilih Nama</option>
                                     @foreach ($santri as $s)
-                                        <option value="{{ $s->nama }}">{{ $s->nama }}</option>
+                                        <option value="{{ $s->nis }}">{{ $s->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            {{-- jumlah --}}
+                            {{-- setoran --}}
                             <div class="mb-3">
                                 <label for="setoran" class="form-label">Setoran</label>
-                                <input type="number" class="form-control" name="setoran" id="setoran"
-                                    placeholder="Setoran" required>
+
+                                <select class="form-control" id="pilihSetoran">
+                                    <option value="" disabled selected>Pilih Setoran</option>
+                                    <option value="2000">Rp. 2.000</option>
+                                    <option value="5000">Rp. 5.000</option>
+                                    <option value="10000">Rp. 10.000</option>
+                                    <option value="isi-setoran">Isi Setoran</option>
+                                </select>
+
+                                <input type="number" name="setoran" class="form-control mt-2" id="setoran"
+                                    placeholder="Jumlah" style="display: none;">
+
+                                @error('jumlah')
+                                    <div class="alert alert-danger py-1 mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
+
                         </div>
 
                         <div class="card-footer text-end">
@@ -64,4 +78,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('nis').addEventListener('change', function() {
+            var selectedNis = this.value;
+            var namaSelect = document.getElementById('nama');
+            namaSelect.value = selectedNis; // otomatis pilih nama yang value-nya = nis
+        });
+    </script>
+
+    <script>
+        document.getElementById('pilihSetoran').addEventListener('change', function() {
+            var setoranInput = document.getElementById('setoran');
+            if (this.value === 'isi-setoran') {
+                setoranInput.style.display = 'block';
+            } else {
+                setoranInput.style.display = 'none';
+                setoranInput.value = this.value; // set value input sesuai pilihan
+            }
+        });
+    </script>
 @endsection

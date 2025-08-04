@@ -37,7 +37,7 @@
                                         <td>{{ $i->tanggal }}</td>
                                         <td>{{ $i->jumlah }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.bukti_pemabayaran_iuran', ['bukti' => $i->bukti]) }}"
+                                            <a href="{{ route('admin.bukti_pemabayaran_iuran', ['id' => $i->id]) }}"
                                                 class="btn btn-primary">
                                                 <i class="bi bi-note"></i>
                                                 Lihat Bukti

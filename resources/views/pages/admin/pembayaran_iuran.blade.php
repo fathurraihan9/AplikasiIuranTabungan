@@ -12,7 +12,7 @@
             <div class="col-md-6">
 
                 <div class="card card-primary card-outline">
-                    <form action="{{ route('post.pembayaran_iuran') }}" enctype="multipart/form-data" method="POST">
+                    <form action="{{ route('post.pembayaran_iuran') }}" method="POST">
                         @csrf
                         @method('POST')
                         <div class="card-header">
@@ -20,10 +20,14 @@
                         </div>
 
                         <div class="card-body">
+
                             {{-- tanggal transaksi --}}
                             <div class="mb-3">
                                 <label for="tanggal" class="form-label">Tanggal Transaksi</label>
                                 <input type="date" name="tanggal" class="form-control" id="tanggal" required>
+                                @error('tanggal')
+                                    <div class="alert alert-danger py-1 mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             {{-- NIS --}}
@@ -35,32 +39,45 @@
                                         <option value="{{ $s->nis }}">{{ $s->nis }}</option>
                                     @endforeach
                                 </select>
+                                @error('nis')
+                                    <div class="alert alert-danger py-1 mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            {{-- nama --}}
+                            {{-- Nama --}}
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
-                                <select class="form-control" name="nama" id="nama" required>
+                                <select class="form-control" name="nama" id="nama" disabled required>
                                     <option value="" disabled selected>Pilih Nama</option>
                                     @foreach ($santri as $s)
-                                        <option value="{{ $s->nama }}">{{ $s->nama }}</option>
+                                        <option value="{{ $s->nis }}">{{ $s->nama }}</option>
                                     @endforeach
                                 </select>
+                                @error('nama')
+                                    <div class="alert alert-danger py-1 mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             {{-- jumlah --}}
                             <div class="mb-3">
                                 <label for="jumlah" class="form-label">Jumlah</label>
-                                <input type="number" name="jumlah" class="form-control" id="jumlah"
-                                    placeholder="Jumlah" required>
+
+                                <select class="form-control" id="pilihJumlah">
+                                    <option value="" disabled selected>Pilih Jumlah</option>
+                                    <option value="2000">Rp. 2.000</option>
+                                    <option value="5000">Rp. 5.000</option>
+                                    <option value="10000">Rp. 10.000</option>
+                                    <option value="isi-jumlah">Isi Jumlah</option>
+                                </select>
+
+                                <input type="number" name="jumlah" class="form-control mt-2" id="jumlah"
+                                    placeholder="Jumlah" style="display: none;">
+
+                                @error('jumlah')
+                                    <div class="alert alert-danger py-1 mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            {{-- bukti --}}
-                            <div class="mb-3">
-                                <label for="bukti" class="form-label">Bukti</label>
-                                <input type="file" name="bukti" class="form-control" id="bukti" placeholder="Bukti"
-                                    accept="image/*" required>
-                            </div>
                         </div>
 
                         <div class="card-footer text-end">
@@ -71,4 +88,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('nis').addEventListener('change', function() {
+            var selectedNis = this.value;
+            var namaSelect = document.getElementById('nama');
+            namaSelect.value = selectedNis; // otomatis pilih nama yang value-nya = nis
+        });
+    </script>
+
+    <script>
+        document.getElementById('pilihJumlah').addEventListener('change', function() {
+            var jumlahInput = document.getElementById('jumlah');
+            if (this.value === 'isi-jumlah') {
+                jumlahInput.style.display = 'block';
+            } else {
+                jumlahInput.style.display = 'none';
+                jumlahInput.value = this.value; // set value input sesuai pilihan
+            }
+        });
+    </script>
 @endsection
