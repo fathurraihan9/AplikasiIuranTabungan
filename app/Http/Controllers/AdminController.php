@@ -49,7 +49,7 @@ class AdminController extends Controller
     public function TambahSantri(Request $request)
     {
         $request->validate([
-            'nis' => ['min:8', 'max:8', 'required'],
+            'nis' => ['min:10', 'max:10', 'required'],
             'nama' => ['required'],
             'jenis_kelamin' => ['required'],
             'kelas' => ['required'],
