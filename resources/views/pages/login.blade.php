@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="login-logo">
-        <a>Aplikasi Iuran Tabungan</a>
+        <a>Aplikasi Iuran Dan Tabungan</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
