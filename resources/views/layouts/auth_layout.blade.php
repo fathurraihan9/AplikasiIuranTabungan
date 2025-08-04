@@ -38,6 +38,9 @@
     <div class="login-box">
         @yield('main')
     </div>
+
+    <x-toast></x-toast>
+
     <!-- /.login-box -->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
@@ -78,6 +81,13 @@
     <!-- Bootstrap 4 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    @if (session('msg_success') || session('msg_error'))
+        <script>
+            $(document).ready(function() {
+                $('.toast').toast('show');
+            });
+        </script>
+    @endif
 </body>
 <!--end::Body-->
 

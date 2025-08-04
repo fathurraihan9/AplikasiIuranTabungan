@@ -16,7 +16,7 @@ class SantriFactory extends Factory
      */
     public function definition(): array
     {
-        $nis = $this->faker->numerify('########');
+        $nis = $this->faker->numerify('##########');
 
         return [
             'nis' => $nis,

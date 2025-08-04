@@ -144,7 +144,7 @@ class AdminController extends Controller
 
     public function HalamanBuktiPembayaranIuran(Request $request, string $id)
     {
-        $bukti_pembayaran_iuran = Iuran::where('id', $id)->first();
+        $bukti_pembayaran_iuran = Iuran::where('id', '=', $id)->first();
 
         return view('pages.admin.bukti_pembayaran_iuran', [
             'bukti_pembayaran_iuran' => $bukti_pembayaran_iuran

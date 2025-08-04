@@ -6,7 +6,6 @@
         <div class="toast bg-success text-white" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-success text-white">
                 <strong class="me-auto">Sukses</strong>
-                <small>Baru saja</small>
             </div>
             <div class="toast-body">
                 {{ session('msg_success') }}
@@ -19,7 +18,6 @@
             aria-atomic="true">
             <div class="toast-header bg-danger text-white">
                 <strong class="me-auto">Gagal</strong>
-                <small>Baru saja</small>
             </div>
             <div class="toast-body">
                 {{ session('msg_error') }}

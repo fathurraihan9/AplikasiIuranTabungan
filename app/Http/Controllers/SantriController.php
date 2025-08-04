@@ -44,30 +44,25 @@ class SantriController extends Controller
 
         $transaksi_iuran = Iuran::where('nis', '=', $santri->nis)->get();
 
+        $transaksi_iuran = $transaksi_iuran->sortByDesc('tanggal');
+
         foreach ($transaksi_iuran as $t) {
             $t->jumlah = Helper::stringToRupiah($t->jumlah);
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
         }
 
-        $notifikasi = Notifikasi::with('santri')->get();
-        $notifikasi = $notifikasi->sortDesc();
-
-        foreach ($notifikasi as $n) {
-            $n->jumlah = Helper::stringToRupiah($n->jumlah);
-            $n->tanggal = Helper::getTanggalAttribute($n->tanggal);
-        }
-
         return view('pages.santri.riwayat_pembayaran_iuran', [
             'santri' => $santri,
-            'transaksi_iuran' => $transaksi_iuran,
-            'notifikasi' => $notifikasi
+            'transaksi_iuran' => $transaksi_iuran
         ]);
     }
 
-    public function HalamanBuktiPembayaranIuran(Request $request, string $bukti)
+    public function HalamanBuktiPembayaranIuran(Request $request, string $id)
     {
+        $bukti_pembayaran_iuran = Iuran::where('id', '=', $id)->first();
+
         return view('pages.santri.bukti_pembayaran_iuran', [
-            'bukti' => $bukti
+            'bukti_pembayaran_iuran' => $bukti_pembayaran_iuran
         ]);
     }
 
@@ -77,22 +72,16 @@ class SantriController extends Controller
 
         $tabungan = Tabungan::where('nis', '=', $santri->nis)->get();
 
+        $tabungan = $tabungan->sortByDesc('tanggal');
+
         foreach ($tabungan as $t) {
             $t->setoran = Helper::stringToRupiah($t->setoran);
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
         }
-        $notifikasi = Notifikasi::with('santri')->get();
-        $notifikasi = $notifikasi->sortDesc();
-
-        foreach ($notifikasi as $n) {
-            $n->jumlah = Helper::stringToRupiah($n->jumlah);
-            $n->tanggal = Helper::getTanggalAttribute($n->tanggal);
-        }
 
         return view('pages.santri.pengecekan_saldo_tabungan', [
             'santri' => $santri,
-            'tabungan' => $tabungan,
-            'notifikasi' => $notifikasi
+            'tabungan' => $tabungan
         ]);
     }
 
@@ -124,27 +113,18 @@ class SantriController extends Controller
             $t->jumlah = Helper::stringToRupiah($t->jumlah);
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
         }
-        $notifikasi = Notifikasi::with('santri')->get();
-        $notifikasi = $notifikasi->sortDesc();
 
-        foreach ($notifikasi as $n) {
-            $n->jumlah = Helper::stringToRupiah($n->jumlah);
-            $n->tanggal = Helper::getTanggalAttribute($n->tanggal);
-        }
         return view('pages.santri.riwayat_transaksi_tabungan', [
             'santri' => $santri,
-            'transaksi_tabungan' => $transaksi_tabungan,
-            'notifikasi' => $notifikasi
+            'transaksi_tabungan' => $transaksi_tabungan
         ]);
     }
 
     public function HalamanBuktiSetoran(Request $request, string $id)
     {
-        $transaksi_tabungan = Tabungan::with('santri')->find($id);
+        $transaksi_tabungan = Tabungan::where('id', '=', $id)->first();
 
-        foreach ($transaksi_tabungan as $t) {
-            $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
-        }
+        $transaksi_tabungan->tanggal = Helper::getTanggalAttribute($transaksi_tabungan->tanggal);
 
         return view('pages.santri.bukti_setoran', [
             'transaksi_tabungan' => $transaksi_tabungan
@@ -153,11 +133,9 @@ class SantriController extends Controller
 
     public function HalamanBuktiPenarikan(Request $request, string $id)
     {
-        $transaksi_tabungan = PenarikanTabungan::with('santri')->find($id);
+        $transaksi_tabungan = PenarikanTabungan::where('id', '=', $id)->first();
 
-        foreach ($transaksi_tabungan as $t) {
-            $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
-        }
+        $transaksi_tabungan->tanggal = Helper::getTanggalAttribute($transaksi_tabungan->tanggal);
 
         return view('pages.santri.bukti_penarikan', [
             'transaksi_tabungan' => $transaksi_tabungan

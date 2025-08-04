@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('santri', function (Blueprint $table) {
-            $table->char('nis', 8)->primary();
+            $table->char('nis', 10)->primary();
             $table->string('nama', 50);
             $table->enum('kelas', ['TKA', 'TQA']);
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);

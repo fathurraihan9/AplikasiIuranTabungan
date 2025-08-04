@@ -28,7 +28,9 @@ class AuthController extends Controller
             return redirect()->route('admin.dashboard', ['user' => $user]);
         }
 
-        return redirect()->route('login', ['msg_err' => 'Terjadi Kesalahan Pada saat Login']);
+        return redirect()
+            ->route('login')
+            ->with('msg_error', 'Silahkan masukkan NIS atau Username dengan benar');
     }
 
     public function logout(Request $request)

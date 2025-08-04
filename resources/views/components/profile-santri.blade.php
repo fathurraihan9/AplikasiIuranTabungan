@@ -28,7 +28,9 @@
             </form>
         </div>
     </div>
-    <div class="col-md-6">
-        <x-pengumuman :notifikasi="$notifikasi"></x-pengumuman>
-    </div>
+    @if (isset($notifikasi))
+        <div class="col-md-6">
+            <x-pengumuman :notifikasi="$notifikasi"></x-pengumuman>
+        </div>
+    @endif
 </div>

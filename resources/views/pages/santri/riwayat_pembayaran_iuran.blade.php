@@ -8,7 +8,7 @@
 
 @section('app-content')
     <div class="container-fluid">
-        <x-profile-santri :santri="$santri" :notifikasi="$notifikasi"></x-profile-santri>
+        <x-profile-santri :santri="$santri"></x-profile-santri>
 
         <div class="row">
             <div class="col-md-8">
@@ -31,7 +31,7 @@
                                         <td>{{ $t->tanggal }}</td>
                                         <td>{{ $t->jumlah }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('santri.bukti_pembayaran_iuran', ['bukti' => $t->bukti]) }}"
+                                            <a href="{{ route('santri.bukti_pembayaran_iuran', ['id' => $t->id]) }}"
                                                 class="btn btn-primary">
                                                 Lihat Pembayaran
                                             </a>

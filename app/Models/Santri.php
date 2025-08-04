@@ -25,7 +25,7 @@ class Santri extends Authenticatable
         static::creating(function ($santri) {
             if (empty($santri->nis)) {
                 $nanoid = new Nanoid();
-                $santri->nis = $nanoid->generateId(8); // CHAR(8)
+                $santri->nis = $nanoid->generateId(10);
             }
         });
     }

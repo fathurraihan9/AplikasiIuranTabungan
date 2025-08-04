@@ -11,8 +11,6 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\SantriMiddleware;
 use App\Http\Middleware\RedirectIfAuthenticatedMulti;
 
-use App\Model\Pesan;
-
 Route::get('/', function () {
     return view('pages.welcome');
 })->name('landing_page.welcome');
@@ -82,7 +80,7 @@ Route::prefix('santri')->middleware([SantriMiddleware::class])->group(function (
 
     Route::get('/iuran', [SantriController::class, 'HalamanRiwayatPembayaranIuran'])->name('santri.riwayat_pembayaran_iuran');
 
-    Route::get('/iuran/{bukti}', [SantriController::class, 'HalamanBuktiPembayaranIuran'])->name('santri.bukti_pembayaran_iuran');
+    Route::get('/iuran/{id}', [SantriController::class, 'HalamanBuktiPembayaranIuran'])->name('santri.bukti_pembayaran_iuran');
 
     Route::get('/pengecekan-saldo', [SantriController::class, 'HalamanPengecekanSaldo'])->name('santri.pengecekan_saldo_tabungan');
 

@@ -1,4 +1,4 @@
-@extends('layouts.main_layout')
+@extends('layouts.main_layout_santri')
 
 @section('app-content-header')
     <div class="container-fluid">
@@ -14,7 +14,7 @@
                     {{-- tanggal transaksi --}}
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal Transaksi</label>
-                        <input type="date" class="form-control" name="tanggal" id="tanggal"
+                        <input type="text" class="form-control" name="tanggal" id="tanggal"
                             value="{{ $transaksi_tabungan->tanggal }}" disabled>
                     </div>
 

@@ -1,4 +1,4 @@
-@extends('layouts.main_layout')
+@extends('layouts.main_layout_santri')
 
 @section('app-content-header')
     <div class="container-fluid">
@@ -11,10 +11,10 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card card-body">
-                    {{-- tanggal transaksi --}}
+                    {{-- tanggal --}}
                     <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal Transaksi</label>
-                        <input type="date" class="form-control" name="tanggal" id="tanggal"
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="text" class="form-control" name="tanggal" id="tanggal"
                             value="{{ $transaksi_tabungan->tanggal }}" disabled>
                     </div>
 
@@ -30,13 +30,6 @@
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" name="nama" id="nama"
                             value="{{ $transaksi_tabungan->santri->nama }}" disabled>
-                    </div>
-
-                    {{-- tanggal --}}
-                    <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal</label>
-                        <input type="text" class="form-control" name="tanggal" id="tanggal"
-                            value="{{ $transaksi_tabungan->tanggal }}" disabled>
                     </div>
 
                     {{-- jumlah --}}
