@@ -14,7 +14,7 @@
         <!--begin::End Navbar Links-->
         <ul class="navbar-nav ms-auto">
             <li class="nav-item d-none d-md-block ml-auto">
-                <a href="{{ route('admin.pesan') }}" class="nav-link">Kontak</a>
+                <a href="{{ route('landing_page.kontak') }}" class="nav-link">Kontak</a>
             </li>
             <li class="nav-item d-none d-md-block">
                 <button type="button" class="nav-link" data-toggle="modal" data-target="#logoutModal">Logout</button>
