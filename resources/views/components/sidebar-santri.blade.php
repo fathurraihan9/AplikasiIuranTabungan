@@ -9,7 +9,7 @@
 class="brand-image opacity-75 shadow" /> --}}
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">Aplikasi Tabungan Dan Iuran</span>
+            <span class="brand-text fw-light">Aplikasi Iuran Dan Tabungan</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
