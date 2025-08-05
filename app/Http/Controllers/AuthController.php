@@ -39,16 +39,16 @@ class AuthController extends Controller
             Auth::guard('admin')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect('/auth/login')->with('status', 'Anda telah logout sebagai admin.');
+            return redirect()->route('login')->with('msg_success', 'Anda telah logout sebagai admin.');
         }
 
         if (Auth::guard('santri')->check()) {
             Auth::guard('santri')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect('/auth/login')->with('status', 'Anda telah logout sebagai santri.');
+            return redirect()->route('login')->with('msg_success', 'Anda telah logout sebagai santri.');
         }
 
-        return redirect('/auth/login');
+        return redirect()->route('admin.dashboard')->with('msg_error', 'Gagal logout');
     }
 }

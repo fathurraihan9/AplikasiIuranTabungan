@@ -190,13 +190,24 @@ class AdminController extends Controller
 
     public function HalamanPenarikanTabungan(Request $request)
     {
-        $data_santri = Santri::all();
-        $total_penarikan = PenarikanTabungan::sum('total');
-        $total_tabungan = Tabungan::sum('setoran');
+        $santri = Santri::all();
+
+        // Ambil data saldo terbaru per santri
+        $santriData = $santri->map(function ($s) {
+            $saldoAwal = Tabungan::where('nis', $s->nis)->sum('setoran');
+            $totalPenarikan = PenarikanTabungan::where('nis', $s->nis)->sum('total');
+
+            return [
+                'nis' => $s->nis,
+                'nama' => $s->nama,
+                'saldo' => $saldoAwal - $totalPenarikan,
+            ];
+        });
 
         return view('pages.admin.penarikan_tabungan', [
-            'santri' => $data_santri,
-            'total_tabungan' => Helper::stringToRupiah($total_tabungan - $total_penarikan)
+            'santri' => $santri,
+            'santri_json' => $santriData,
+            'total_tabungan' => Helper::stringToRupiah(0)
         ]);
     }
 

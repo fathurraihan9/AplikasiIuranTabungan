@@ -63,8 +63,9 @@
                             <button type="submit" class="btn btn-primary px-5 rounded-pill"
                                 style="width: fit-content">Tarik Saldo</button>
 
-                            <input type="text" class="form-control rounded-pill ms-auto" value="{{ $total_tabungan }}"
-                                style="width: fit-content" disabled>
+                            <input type="text" class="form-control rounded-pill ms-auto" id="total_tabungan"
+                                value="0" style="width: fit-content" readonly disabled>
+
                         </div>
                     </form>
                 </div>
@@ -77,6 +78,46 @@
             var selectedNis = this.value;
             var namaSelect = document.getElementById('nama');
             namaSelect.value = selectedNis; // otomatis pilih nama yang value-nya = nis
+        });
+    </script>
+
+    <script>
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
+        }
+
+        const santriData = @json($santri_json);
+
+        const nisSelect = document.getElementById('nis');
+        const namaSelect = document.getElementById('nama');
+        const saldoField = document.getElementById('total_tabungan');
+
+        nisSelect.addEventListener('change', function() {
+            const selectedNis = this.value;
+            namaSelect.value = selectedNis;
+
+            const selectedSantri = santriData.find(s => s.nis === selectedNis);
+            saldoField.value = selectedSantri ?
+                formatRupiah(selectedSantri.saldo) :
+                formatRupiah(0);
+        });
+    </script>
+
+    <script>
+        const totalInput = document.getElementById('total');
+
+        totalInput.addEventListener('input', function() {
+            const tarik = parseInt(this.value || 0);
+            const saldo = parseInt(saldoField.value || 0);
+
+            if (tarik > saldo) {
+                alert('Penarikan melebihi saldo!');
+                this.value = '';
+            }
         });
     </script>
 @endsection

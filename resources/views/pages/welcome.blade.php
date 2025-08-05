@@ -3,9 +3,8 @@
 @section('main-content')
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-
-        <img src="photo/photo-2.jpeg" alt="" data-aos="fade-in">
-
+        <img src="photo/photo-6.jpg" alt="" style="object-fit: cover; object-position: top; width: 100%; height: 100%;"
+            data-aos="fade-in">
         <div class="container d-flex flex-column align-items-start">
             <h2 data-aos="fade-up" data-aos-delay="100">Aplikasi Iuran dan Tabungan Santri TKA-TPA Khsunul Khatimah Manjalling
                 Kabupaten Gowa</h2>
@@ -13,6 +12,6 @@
                 <a href="{{ route('login') }}" class="btn-get-started">Login</a>
             </div>
         </div>
-
-    </section><!-- /Hero Section -->
+    </section>
+    <!-- /Hero Section -->
 @endsection
