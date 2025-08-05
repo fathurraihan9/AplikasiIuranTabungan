@@ -9,11 +9,24 @@
 @section('app-content')
     <div class="container-fluid">
         <div class="row justify-content-center mb-3">
-            <div class="col-md-10">
+            <div class="col-md-5">
                 <div class="card card-body">
-                    <form action="" class="d-flex justify-content-center gap-3">
-                        <input type="date" class="form-control">
-                        <input type="text" class="form-control" placeholder="Cari Nama">
+                    <form action="{{ route('admin.laporan_iuran') }}" method="GET" class="d-flex gap-1">
+                        <input type="date" name="tanggal" class="form-control" value="{{ request('tanggal') }}">
+                        <button class="btn btn-primary d-flex gap-1">
+                            <i class="bi bi-search"></i> Cari
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5 mt-1 mt-md-0">
+                <div class="card card-body">
+                    <form action="{{ route('admin.laporan_iuran') }}" method="GET" class="d-flex gap-1">
+                        <input type="text" name="nama" class="form-control" placeholder="Cari Nama"
+                            value="{{ request('nama') }}">
+                        <button class="btn btn-primary d-flex gap-1">
+                            <i class="bi bi-search"></i> Cari
+                        </button>
                     </form>
                 </div>
             </div>

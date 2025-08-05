@@ -318,13 +318,27 @@ class AdminController extends Controller
 
     public function HalamanLaporanIuran(Request $request)
     {
-        $total_iuran = Iuran::sum('jumlah');
+        $query = Iuran::with('santri');
 
-        $transaksi_iuran = Iuran::with('santri')->get();
+        if ($request->filled('nama')) {
+            $query->whereHas('santri', function ($q) use ($request) {
+                $q->where('nama', 'like', '%' . $request->nama . '%');
+            });
+        }
+
+        if ($request->filled('tanggal')) {
+            $query->whereDate('tanggal', $request->tanggal);
+        }
+
+        $transaksi_iuran = $query->get();
+
+        $transaksi_iuran = $transaksi_iuran->sortByDesc('tanggal');
 
         foreach ($transaksi_iuran as $t) {
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
         }
+
+        $total_iuran = $transaksi_iuran->sum('jumlah');
 
         return view('pages.admin.laporan_iuran', [
             'total_iuran' => $total_iuran,
@@ -337,34 +351,72 @@ class AdminController extends Controller
         $total_setoran = Tabungan::sum('setoran');
         $total_penarikan = PenarikanTabungan::sum('total');
 
-        $transaksi = Tabungan::select(
-            'id',
-            'nis',
-            'tanggal',
-            DB::raw('setoran as jumlah'),
-            DB::raw("'setoran' as jenis"),
-            DB::raw("'Setor tabungan' as keterangan")
-        )
-            ->unionAll(
-                PenarikanTabungan::select(
-                    'id',
-                    'nis',
-                    'tanggal',
-                    DB::raw('total as jumlah'),
-                    DB::raw("'penarikan' as jenis"),
-                    DB::raw("'Tarik tabungan' as keterangan")
+        // Ambil dan filter Tabungan
+        $tabungan = Tabungan::with('santri')
+            ->when(
+                $request->filled('tanggal'),
+                fn($q) =>
+                $q->whereDate('tanggal', $request->tanggal)
+            )
+            ->when(
+                $request->filled('nama'),
+                fn($q) =>
+                $q->whereHas(
+                    'santri',
+                    fn($q2) =>
+                    $q2->where('nama', 'like', '%' . $request->nama . '%')
                 )
             )
             ->get()
-            ->load('santri');
+            ->map(function ($item) {
+                return (object) [
+                    'id' => $item->id,
+                    'nis' => $item->nis,
+                    'tanggal' => $item->tanggal,
+                    'jumlah' => $item->setoran,
+                    'jenis' => 'setoran',
+                    'keterangan' => 'Setor tabungan',
+                    'santri' => $item->santri,
+                ];
+            });
 
-        $transaksi = $transaksi->sortByDesc('tanggal')->values();
+        // Ambil dan filter Penarikan
+        $penarikan = PenarikanTabungan::with('santri')
+            ->when(
+                $request->filled('tanggal'),
+                fn($q) =>
+                $q->whereDate('tanggal', $request->tanggal)
+            )
+            ->when(
+                $request->filled('nama'),
+                fn($q) =>
+                $q->whereHas(
+                    'santri',
+                    fn($q2) =>
+                    $q2->where('nama', 'like', '%' . $request->nama . '%')
+                )
+            )
+            ->get()
+            ->map(function ($item) {
+                return (object) [
+                    'id' => $item->id,
+                    'nis' => $item->nis,
+                    'tanggal' => $item->tanggal,
+                    'jumlah' => $item->total,
+                    'jenis' => 'penarikan',
+                    'keterangan' => 'Tarik tabungan',
+                    'santri' => $item->santri,
+                ];
+            });
 
+        // Gabungkan dan urutkan
+        $transaksi = $tabungan->merge($penarikan)->sortByDesc('tanggal')->values();
+
+        // Format tanggal
         foreach ($transaksi as $t) {
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
         }
 
-        // dd($transaksi);
         return view('pages.admin.laporan_tabungan', [
             'total_tabungan' => $total_setoran - $total_penarikan,
             'tabungan_santri' => $transaksi
