@@ -72,7 +72,12 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3 w-50">
-                            <input type="text" class="form-control" placeholder="Cari">
+                            <form action="{{ route('admin.santri') }}" method="GET" class="d-flex gap-1">
+                                <input type="text" class="form-control" name="nama" value="{{ request('nama') }}"
+                                    placeholder="Cari Nama">
+
+                                <button type="submit" class="btn btn-primary">Cari</button>
+                            </form>
                         </div>
 
                         <table class="table table-bordered" role="table">
@@ -103,7 +108,8 @@
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="santri{{ $loop->iteration }}Modal" tabindex="-1"
-                                                aria-labelledby="santri{{ $loop->iteration }}ModalLabel" aria-hidden="true">
+                                                aria-labelledby="santri{{ $loop->iteration }}ModalLabel"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">

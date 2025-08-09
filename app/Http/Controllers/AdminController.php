@@ -37,9 +37,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function HalamanSantri()
+    public function HalamanSantri(Request $request)
     {
         $santri = Santri::all();
+
+        if ($request->filled('nama')) {
+            $santri = Santri::where('nama', 'like', '%' . $request->nama . '%')->get();
+        }
 
         return view('pages.admin.santri', [
             'santri' => $santri
@@ -130,12 +134,12 @@ class AdminController extends Controller
     {
         $iuran = Iuran::with('santri')->get();
 
+        $iuran = $iuran->sortByDesc('tanggal');
+
         foreach ($iuran as $i) {
             $i->jumlah = Helper::stringToRupiah($i->jumlah);
             $i->tanggal = Helper::getTanggalAttribute($i->tanggal);
         }
-
-        $iuran = $iuran->sortByDesc('tanggal');
 
         return view('pages.admin.riwayat_pembayaran_iuran', [
             'iuran' => $iuran
@@ -145,6 +149,8 @@ class AdminController extends Controller
     public function HalamanBuktiPembayaranIuran(Request $request, string $id)
     {
         $bukti_pembayaran_iuran = Iuran::where('id', '=', $id)->first();
+
+        $bukti_pembayaran_iuran->tanggal = Helper::getTanggalAttribute($bukti_pembayaran_iuran->tanggal);
 
         return view('pages.admin.bukti_pembayaran_iuran', [
             'bukti_pembayaran_iuran' => $bukti_pembayaran_iuran
@@ -291,6 +297,7 @@ class AdminController extends Controller
 
         foreach ($transaksi as $t) {
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
+            $t->setoran = Helper::stringToRupiah($t->setoran);
         }
 
         return view('pages.admin.riwayat_transaksi_tabungan', [
@@ -302,6 +309,9 @@ class AdminController extends Controller
     {
         $transaksi_tabungan = Tabungan::with('santri')->find($id);
 
+        $transaksi_tabungan->tanggal = Helper::getTanggalAttribute($transaksi_tabungan->tanggal);
+        $transaksi_tabungan->setoran = Helper::stringToRupiah($transaksi_tabungan->setoran);
+
         return view('pages.admin.bukti_setoran', [
             'transaksi_tabungan' => $transaksi_tabungan
         ]);
@@ -310,6 +320,9 @@ class AdminController extends Controller
     public function HalamanBuktiPenarikan(Request $request, string $id)
     {
         $transaksi_tabungan = PenarikanTabungan::with('santri')->find($id);
+
+        $transaksi_tabungan->tanggal = Helper::getTanggalAttribute($transaksi_tabungan->tanggal);
+        $transaksi_tabungan->total = Helper::stringToRupiah($transaksi_tabungan->total);
 
         return view('pages.admin.bukti_penarikan', [
             'transaksi_tabungan' => $transaksi_tabungan

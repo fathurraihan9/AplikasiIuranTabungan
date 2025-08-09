@@ -13,8 +13,8 @@
                 <div class="card card-body">
                     {{-- tanggal transaksi --}}
                     <div class="mb-3">
-                        <label for="tanggal" class="form-label">Tanggal Transaksi</label>
-                        <input type="date" class="form-control" name="tanggal" id="tanggal"
+                        <label for="tanggal-transaksi" class="form-label">Tanggal Transaksi</label>
+                        <input type="text" class="form-control" name="tanggal-transaksi" id="tanggal-transaksi"
                             value="{{ $transaksi_tabungan->tanggal }}" disabled>
                     </div>
 
@@ -36,7 +36,7 @@
                     <div class="mb-3">
                         <label for="total" class="form-label">Total</label>
                         <input type="textr" class="form-control" name="total" id="total" placeholder="Total"
-                            value="Rp. {{ number_format($transaksi_tabungan->total, 0, ',', '.') }}" disabled>
+                            value="{{ $transaksi_tabungan->total }}" disabled>
                     </div>
 
                     <div class="mb-3">

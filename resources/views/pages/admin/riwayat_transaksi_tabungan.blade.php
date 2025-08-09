@@ -9,7 +9,7 @@
 @section('app-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card card-primary card-outline">
                     <div class="card-header"></div>
                     <div class="card-body">
@@ -36,7 +36,7 @@
                                         <td>{{ $t->santri->jenis_kelamin }}</td>
                                         <td>{{ $t->santri->kelas }}</td>
                                         <td>{{ $t->tanggal }}</td>
-                                        <td>Rp. {{ number_format($t->setoran, 0, ',', '.') }}</td>
+                                        <td>{{ $t->setoran }}</td>
                                         <td>{{ $t->keterangan }}</td>
                                         <td>
                                             @if ($t->keterangan == 'Setor tabungan')
