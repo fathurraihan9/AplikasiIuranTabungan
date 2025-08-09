@@ -58,18 +58,18 @@
                                         <td>{{ $t->keterangan }}</td>
                                         @if ($t->jenis == 'setoran')
                                             <td class="text-success">
-                                                Rp. {{ number_format($t->jumlah, 0, ',', '.') }}
+                                                {{ $t->jumlah }}
                                             </td>
                                         @elseif ($t->jenis == 'penarikan')
                                             <td class="text-danger">
-                                                Rp. {{ number_format($t->jumlah, 0, ',', '.') }}
+                                                {{ $t->jumlah }}
                                             </td>
                                         @endif
                                     </tr>
                                 @endforeach
                                 <tr class="align-middle">
                                     <td colspan="5" class="text-center fw-bold">Jumlah</td>
-                                    <td class="fw-bold">Rp. {{ number_format($total_tabungan, 0, ',', '.') }}</td>
+                                    <td class="fw-bold">{{ $total_tabungan }}</td>
                                 </tr>
                             </tbody>
                         </table>

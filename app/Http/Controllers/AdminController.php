@@ -293,7 +293,7 @@ class AdminController extends Controller
             ->get()
             ->load('santri');
 
-        $transaksi = $transaksi->sortByDesc('tanggal')->values();
+        $transaksi = $transaksi->sortByDesc('tanggal');
 
         foreach ($transaksi as $t) {
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
@@ -382,15 +382,10 @@ class AdminController extends Controller
             )
             ->get()
             ->map(function ($item) {
-                return (object) [
-                    'id' => $item->id,
-                    'nis' => $item->nis,
-                    'tanggal' => $item->tanggal,
-                    'jumlah' => $item->setoran,
-                    'jenis' => 'setoran',
-                    'keterangan' => 'Setor tabungan',
-                    'santri' => $item->santri,
-                ];
+                $item->jumlah = $item->setoran;
+                $item->jenis = 'setoran';
+                $item->keterangan = 'Setor tabungan';
+                return $item;
             });
 
         // Ambil dan filter Penarikan
@@ -411,27 +406,25 @@ class AdminController extends Controller
             )
             ->get()
             ->map(function ($item) {
-                return (object) [
-                    'id' => $item->id,
-                    'nis' => $item->nis,
-                    'tanggal' => $item->tanggal,
-                    'jumlah' => $item->total,
-                    'jenis' => 'penarikan',
-                    'keterangan' => 'Tarik tabungan',
-                    'santri' => $item->santri,
-                ];
+                $item->jumlah = $item->total;
+                $item->jenis = 'penarikan';
+                $item->keterangan = 'Tarik tabungan';
+                return $item;
             });
 
         // Gabungkan dan urutkan
-        $transaksi = $tabungan->merge($penarikan)->sortByDesc('tanggal')->values();
+        $transaksi = $tabungan->concat($penarikan)
+            ->sortByDesc('tanggal')
+            ->values();
 
         // Format tanggal
         foreach ($transaksi as $t) {
+            $t->jumlah = Helper::stringToRupiah($t->jumlah);
             $t->tanggal = Helper::getTanggalAttribute($t->tanggal);
         }
 
         return view('pages.admin.laporan_tabungan', [
-            'total_tabungan' => $total_setoran - $total_penarikan,
+            'total_tabungan' => Helper::stringToRupiah($total_setoran - $total_penarikan),
             'tabungan_santri' => $transaksi
         ]);
     }
