@@ -16,7 +16,7 @@ class RedirectIfAuthenticatedMulti
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('admin')->check()) {
+        if (Auth::guard('user')->check()) {
             return redirect()->route('admin.dashboard');
         }
 

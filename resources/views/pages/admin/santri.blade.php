@@ -10,7 +10,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <div class="card card-primary card-outline">
+                <div
+                    class="card card-primary card-outline {{ Auth::guard('user')->user()->role == 'admin' ? 'd-block' : 'd-none' }}">
                     <!--begin::Header-->
                     <div class="card-header">
                         <div class="card-title">Input Data Santri</div>

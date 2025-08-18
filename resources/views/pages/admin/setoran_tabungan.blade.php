@@ -32,7 +32,8 @@
                                 <select class="form-control" name="nis" id="nis" required>
                                     <option value="" disabled selected>Pilih NIS</option>
                                     @foreach ($santri as $s)
-                                        <option value="{{ $s->nis }}">{{ $s->nis }}</option>
+                                        <option value="{{ $s->nis }}">{{ $s->nis }} | {{ $s->nama }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

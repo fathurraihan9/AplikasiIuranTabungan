@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('user')->user()->role != 'admin') {
-            return redirect()
-                ->route('admin.dashboard')
-                ->with('msg_error', 'Anda bukan admin.');
+        if (!Auth::guard('user')->check()) {
+            return redirect()->route('login')->with('msg_error', 'Silakan login');
         }
 
         return $next($request);

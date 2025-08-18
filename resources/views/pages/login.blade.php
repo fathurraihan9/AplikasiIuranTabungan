@@ -21,7 +21,7 @@
                 @endif
 
                 <div class="mb-3">
-                    <input type="text" name="nis_username" class="form-control" placeholder="NIS" required />
+                    <input type="text" name="nis_username" class="form-control" placeholder="NIS / Username" required />
                 </div>
                 <div class="mb-3">
                     <input type="password" name="password" class="form-control" placeholder="Password" required />

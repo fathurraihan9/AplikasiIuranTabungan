@@ -21,9 +21,9 @@ class AuthController extends Controller
             return redirect()->route('santri.dashboard', ['user' => $user]);
         }
 
-        if (Auth::guard('admin')->attempt(['username' => $request->nis_username, 'password' => $request->password])) {
+        if (Auth::guard('user')->attempt(['username' => $request->nis_username, 'password' => $request->password])) {
             // login berhasil
-            $user = Auth::guard('admin')->user();
+            $user = Auth::guard('user')->user();
 
             return redirect()->route('admin.dashboard', ['user' => $user]);
         }
@@ -35,11 +35,11 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        if (Auth::guard('admin')->check()) {
-            Auth::guard('admin')->logout();
+        if (Auth::guard('user')->check()) {
+            Auth::guard('user')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route('login')->with('msg_success', 'Anda telah logout sebagai admin.');
+            return redirect()->route('login')->with('msg_success', 'Anda telah logout sebagai admin / ketua.');
         }
 
         if (Auth::guard('santri')->check()) {

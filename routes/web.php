@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SantriController;
 
+use App\Http\Middleware\UserMiddleware;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\SantriMiddleware;
 use App\Http\Middleware\RedirectIfAuthenticatedMulti;
@@ -39,7 +40,7 @@ Route::prefix('auth')->middleware([RedirectIfAuthenticatedMulti::class])->group(
     Route::post('login', [AuthController::class, 'login'])->name('post.login');
 });
 
-Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () {
+Route::prefix('admin')->middleware([UserMiddleware::class])->group(function () {
     Route::get('/', [AdminController::class, 'HalamanDashboard'])->name('admin.dashboard');
 
     Route::get('/pesan', [LandingPageController::class, 'HalamanLihatPesan'])->name('admin.pesan');
@@ -48,18 +49,30 @@ Route::prefix('admin')->middleware([AdminMiddleware::class])->group(function () 
     Route::post('/santri', [AdminController::class, 'TambahSantri'])->name('post.tambah_santri');
     Route::delete('/santri/{nis}', [AdminController::class, 'HapusSantri'])->name('delete.hapus_santri');
 
-    Route::get('/pembayaran-iuran', [AdminController::class, 'HalamanPembayaranIuran'])->name('admin.pembayaran_iuran');
-    Route::post('/pembayaran-iuran', [AdminController::class, 'PembayaranIuran'])->name('post.pembayaran_iuran');
+    Route::get('/pembayaran-iuran', [AdminController::class, 'HalamanPembayaranIuran'])
+        ->middleware([AdminMiddleware::class])
+        ->name('admin.pembayaran_iuran');
+    Route::post('/pembayaran-iuran', [AdminController::class, 'PembayaranIuran'])
+        ->middleware([AdminMiddleware::class])
+        ->name('post.pembayaran_iuran');
 
     Route::get('/riwayat-pembayaran', [AdminController::class, 'HalamanRiwayatPembayaranIuran'])->name('admin.riwayat_pembayaran_iuran');
 
     Route::get('/bukti-pembayaran-iuran/{id}', [AdminController::class, 'HalamanBuktiPembayaranIuran'])->name('admin.bukti_pemabayaran_iuran');
 
-    Route::get('/setoran-tabungan', [AdminController::class, 'HalamanSetoranTabungan'])->name('admin.setoran_tabungan');
-    Route::post('/setoran-tabungan', [AdminController::class, 'SetoranTabungan'])->name('post.setoran_tabungan');
+    Route::get('/setoran-tabungan', [AdminController::class, 'HalamanSetoranTabungan'])
+        ->middleware([AdminMiddleware::class])
+        ->name('admin.setoran_tabungan');
+    Route::post('/setoran-tabungan', [AdminController::class, 'SetoranTabungan'])
+        ->middleware([AdminMiddleware::class])
+        ->name('post.setoran_tabungan');
 
-    Route::get('/penarikan-tabungan', [AdminController::class, 'HalamanPenarikanTabungan'])->name('admin.penarikan_tabungan');
-    Route::post('/penarikan-tabungan', [AdminController::class, 'PenarikanTabungan'])->name('post.penarikan_tabungan');
+    Route::get('/penarikan-tabungan', [AdminController::class, 'HalamanPenarikanTabungan'])
+        ->middleware([AdminMiddleware::class])
+        ->name('admin.penarikan_tabungan');
+    Route::post('/penarikan-tabungan', [AdminController::class, 'PenarikanTabungan'])
+        ->middleware([AdminMiddleware::class])
+        ->name('post.penarikan_tabungan');
 
     Route::get('/pengecekan-saldo', [AdminController::class, 'HalamanPengecekanSaldo'])->name('admin.pengecekan_saldo');
 

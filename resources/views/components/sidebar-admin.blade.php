@@ -51,7 +51,7 @@ class="brand-image opacity-75 shadow" /> --}}
                         {{-- pembayaran iuran --}}
                         <li class="nav-item">
                             <a href="{{ route('admin.pembayaran_iuran') }}"
-                                class="nav-link {{ Route::is('admin.pembayaran_iuran') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('admin.pembayaran_iuran') ? 'active' : '' }} {{ Auth::guard('user')->user()->role == 'admin' ? 'd-block' : 'd-none' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Pembayaran Iuran</p>
                             </a>
@@ -81,7 +81,7 @@ class="brand-image opacity-75 shadow" /> --}}
                         {{-- setoran --}}
                         <li class="nav-item">
                             <a href="{{ route('admin.setoran_tabungan') }}"
-                                class="nav-link {{ Route::is('admin.setoran_tabungan') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('admin.setoran_tabungan') ? 'active' : '' }} {{ Auth::guard('user')->user()->role == 'admin' ? 'd-block' : 'd-none' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Setoran</p>
                             </a>
@@ -89,7 +89,7 @@ class="brand-image opacity-75 shadow" /> --}}
                         {{-- tarik tabungan --}}
                         <li class="nav-item">
                             <a href="{{ route('admin.penarikan_tabungan') }}"
-                                class="nav-link {{ Route::is('admin.penarikan_tabungan') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('admin.penarikan_tabungan') ? 'active' : '' }} {{ Auth::guard('user')->user()->role == 'admin' ? 'd-block' : 'd-none' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Tarik Tabungan</p>
                             </a>
